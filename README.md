@@ -62,7 +62,3 @@ After starting the development server, navigate to `http://localhost:5173` in yo
 ## Contributors
 
 - Pranay Chitare ([@Pranay44444](https://github.com/Pranay44444))
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
