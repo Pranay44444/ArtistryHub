@@ -36,6 +36,3 @@ Visit `http://localhost:5173` to see the magic happen!
 
 [Pranay Chitare](https://github.com/Pranay44444)
 
----
-
-[Live Demo](https://artistry-hub-theta.vercel.app/) | [Report an Issue](https://github.com/Pranay44444/artistryhub/issues)
