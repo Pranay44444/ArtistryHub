@@ -1,3 +1,4 @@
+import React from 'react';
 // Import images directly 
 import artwork1Original from './artworks/originals/artwork1.png';
 import artwork2Original from './artworks/originals/artwork2.jpg';
@@ -28,40 +29,20 @@ import artwork12Thumbnail from './artworks/thumbnails/artwork12.jpg';
 import homeHeroImage from './heroes/home-hero.jpeg';
 import ctaHeroImage from './heroes/bottom-hero.png';
 
-// Define the asset objects with imported images
-export const artworkOriginals = {
-  artwork1: artwork1Original,
-  artwork2: artwork2Original,
-  artwork3: artwork3Original,
-  artwork4: artwork4Original,
-  artwork5: artwork5Original,
-  artwork6: artwork6Original,
-  artwork7: artwork7Original,
-  artwork8: artwork8Original,
-  artwork9: artwork9Original,
-  artwork10: artwork10Original,
-  artwork11: artwork11Original,
-  artwork12: artwork12Original,
-};
-
-export const artworkThumbnails = {
-  artwork1: artwork1Thumbnail,
-  artwork2: artwork2Thumbnail,
-  artwork3: artwork3Thumbnail,
-  artwork4: artwork4Thumbnail,
-  artwork5: artwork5Thumbnail,
-  artwork6: artwork6Thumbnail,
-  artwork7: artwork7Thumbnail,
-  artwork8: artwork8Thumbnail,
-  artwork9: artwork9Thumbnail,
-  artwork10: artwork10Thumbnail,
-  artwork11: artwork11Thumbnail,
-  artwork12: artwork12Thumbnail,
-};
-
-export const heroImages = {
-  homeHero: homeHeroImage,
-  ctaHero: ctaHeroImage,
+// Export all images directly for better bundling
+export {
+  // Original artwork exports
+  artwork1Original, artwork2Original, artwork3Original, artwork4Original,
+  artwork5Original, artwork6Original, artwork7Original, artwork8Original,
+  artwork9Original, artwork10Original, artwork11Original, artwork12Original,
+  
+  // Thumbnail artwork exports
+  artwork1Thumbnail, artwork2Thumbnail, artwork3Thumbnail, artwork4Thumbnail,
+  artwork5Thumbnail, artwork6Thumbnail, artwork7Thumbnail, artwork8Thumbnail,
+  artwork9Thumbnail, artwork10Thumbnail, artwork11Thumbnail, artwork12Thumbnail,
+  
+  // Hero images
+  homeHeroImage, ctaHeroImage
 };
 
 // For avatars, we'll use remote URLs which are always accessible
@@ -95,26 +76,42 @@ export const artistData = {
   112: { name: "Emma Wilson", avatar: artistAvatars.avatar12 }
 };
 
+// Artwork data with direct references to imports
 export const artworkData = {
-  1: { title: "Abstract Harmony", thumbnail: artworkThumbnails.artwork1, original: artworkOriginals.artwork1, artist: 101 },
-  2: { title: "Sunset Dreams", thumbnail: artworkThumbnails.artwork2, original: artworkOriginals.artwork2, artist: 102 },
-  3: { title: "Urban Expressions", thumbnail: artworkThumbnails.artwork3, original: artworkOriginals.artwork3, artist: 103 },
-  4: { title: "Digital Landscape", thumbnail: artworkThumbnails.artwork4, original: artworkOriginals.artwork4, artist: 104 },
-  5: { title: "Neon Reflections", thumbnail: artworkThumbnails.artwork5, original: artworkOriginals.artwork5, artist: 105 },
-  6: { title: "Watercolor Dreams", thumbnail: artworkThumbnails.artwork6, original: artworkOriginals.artwork6, artist: 106 },
-  7: { title: "Fractured Reality", thumbnail: artworkThumbnails.artwork7, original: artworkOriginals.artwork7, artist: 107 },
-  8: { title: "Geometric Patterns", thumbnail: artworkThumbnails.artwork8, original: artworkOriginals.artwork8, artist: 108 },
-  9: { title: "Cityscape at Dusk", thumbnail: artworkThumbnails.artwork9, original: artworkOriginals.artwork9, artist: 109 },
-  10: { title: "Ocean Serenity", thumbnail: artworkThumbnails.artwork10, original: artworkOriginals.artwork10, artist: 110 },
-  11: { title: "Abstract Dreams", thumbnail: artworkThumbnails.artwork11, original: artworkOriginals.artwork11, artist: 111 },
-  12: { title: "Nature's Beauty", thumbnail: artworkThumbnails.artwork12, original: artworkOriginals.artwork12, artist: 112 }
+  1: { title: "Abstract Harmony", thumbnail: artwork1Thumbnail, original: artwork1Original, artist: 101 },
+  2: { title: "Sunset Dreams", thumbnail: artwork2Thumbnail, original: artwork2Original, artist: 102 },
+  3: { title: "Urban Expressions", thumbnail: artwork3Thumbnail, original: artwork3Original, artist: 103 },
+  4: { title: "Digital Landscape", thumbnail: artwork4Thumbnail, original: artwork4Original, artist: 104 },
+  5: { title: "Neon Reflections", thumbnail: artwork5Thumbnail, original: artwork5Original, artist: 105 },
+  6: { title: "Watercolor Dreams", thumbnail: artwork6Thumbnail, original: artwork6Original, artist: 106 },
+  7: { title: "Fractured Reality", thumbnail: artwork7Thumbnail, original: artwork7Original, artist: 107 },
+  8: { title: "Geometric Patterns", thumbnail: artwork8Thumbnail, original: artwork8Original, artist: 108 },
+  9: { title: "Cityscape at Dusk", thumbnail: artwork9Thumbnail, original: artwork9Original, artist: 109 },
+  10: { title: "Ocean Serenity", thumbnail: artwork10Thumbnail, original: artwork10Original, artist: 110 },
+  11: { title: "Abstract Dreams", thumbnail: artwork11Thumbnail, original: artwork11Original, artist: 111 },
+  12: { title: "Nature's Beauty", thumbnail: artwork12Thumbnail, original: artwork12Original, artist: 112 }
 };
 
+// Helper functions
 export const getArtworkById = (id, type = 'thumbnail') => {
-  const key = `artwork${id}`;
+  const artworkMap = {
+    1: { thumbnail: artwork1Thumbnail, original: artwork1Original },
+    2: { thumbnail: artwork2Thumbnail, original: artwork2Original },
+    3: { thumbnail: artwork3Thumbnail, original: artwork3Original },
+    4: { thumbnail: artwork4Thumbnail, original: artwork4Original },
+    5: { thumbnail: artwork5Thumbnail, original: artwork5Original },
+    6: { thumbnail: artwork6Thumbnail, original: artwork6Original },
+    7: { thumbnail: artwork7Thumbnail, original: artwork7Original },
+    8: { thumbnail: artwork8Thumbnail, original: artwork8Original },
+    9: { thumbnail: artwork9Thumbnail, original: artwork9Original },
+    10: { thumbnail: artwork10Thumbnail, original: artwork10Original },
+    11: { thumbnail: artwork11Thumbnail, original: artwork11Original },
+    12: { thumbnail: artwork12Thumbnail, original: artwork12Original }
+  };
+  
   return type === 'thumbnail' 
-    ? artworkThumbnails[key] 
-    : artworkOriginals[key];
+    ? artworkMap[id]?.thumbnail 
+    : artworkMap[id]?.original;
 };
 
 export const getArtistAvatarById = (id) => {
@@ -140,9 +137,14 @@ export const getFullArtworkInfo = (id) => {
   };
 };
 
+// For backward compatibility
+export const heroImages = {
+  homeHero: homeHeroImage,
+  ctaHero: ctaHeroImage,
+};
+
+// Default export
 export default {
-  artworkOriginals,
-  artworkThumbnails,
   heroImages,
   artistAvatars,
   artistData,

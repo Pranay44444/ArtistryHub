@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Visibility } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
-import { artworkOriginals } from '../assets';
+import { artwork1Original, artwork3Original, artwork7Original, artwork8Original, artwork9Original } from '../assets';
 import './FeaturedArtworks.css';
+
 const featuredArtworks = [
   {
     id: 1,
     title: "Abstract Harmony",
     artist: "Jorge",
     artistId: 101,
-    imageUrl: artworkOriginals.artwork1,
+    imageUrl: artwork1Original,
     views: 1205
   },
   {
@@ -18,7 +19,7 @@ const featuredArtworks = [
     title: "Cityscape at Dusk",
     artist: "Leo",
     artistId: 109,
-    imageUrl: artworkOriginals.artwork9,
+    imageUrl: artwork9Original,
     views: 1980
   },
   {
@@ -26,7 +27,7 @@ const featuredArtworks = [
     title: "Urban Expressions",
     artist: "Tanya",
     artistId: 103,
-    imageUrl: artworkOriginals.artwork3,
+    imageUrl: artwork3Original,
     views: 1780
   },
   {
@@ -34,7 +35,7 @@ const featuredArtworks = [
     title: "Fractured Reality",
     artist: "David",
     artistId: 107,
-    imageUrl: artworkOriginals.artwork7,
+    imageUrl: artwork7Original,
     views: 1842
   },
   {
@@ -42,10 +43,11 @@ const featuredArtworks = [
     title: "Painting Patterns",
     artist: "Omar",
     artistId: 108,
-    imageUrl: artworkOriginals.artwork8,
+    imageUrl: artwork8Original,
     views: 1689
   }
 ];
+
 function FeaturedArtworks() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -138,4 +140,5 @@ function FeaturedArtworks() {
     </div>
   );
 }
+
 export default FeaturedArtworks;

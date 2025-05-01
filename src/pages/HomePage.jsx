@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import { ChevronRight } from '@mui/icons-material';
 import FeaturedArtworks from '../components/FeaturedArtworks';
-import { heroImages } from '../assets';
+import { homeHeroImage, ctaHeroImage } from '../assets';
 import { useAuth } from '../contexts/AuthContext';
 import './HomePage.css';
 
@@ -41,7 +41,7 @@ function HomePage() {
         <div className="hero-background">
           <div className="hero-overlay"></div>
           <img 
-            src={heroImages.homeHero}
+            src={homeHeroImage}
             alt="Creative artwork" 
             className="hero-image"
           />
@@ -145,7 +145,7 @@ function HomePage() {
         <div className="cta-background">
           <div className="cta-overlay"></div>
           <img 
-            src={heroImages.ctaHero}
+            src={ctaHeroImage}
             alt="Creative space" 
             className="cta-image"
           />

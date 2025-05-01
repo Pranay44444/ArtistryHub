@@ -1,5 +1,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { artworkThumbnails, artworkOriginals } from '../assets';
+import { 
+  // Import all artwork images directly
+  artwork1Thumbnail, artwork2Thumbnail, artwork3Thumbnail, artwork4Thumbnail,
+  artwork5Thumbnail, artwork6Thumbnail, artwork7Thumbnail, artwork8Thumbnail,
+  artwork9Thumbnail, artwork10Thumbnail, artwork11Thumbnail, artwork12Thumbnail,
+  
+  artwork1Original, artwork2Original, artwork3Original, artwork4Original,
+  artwork5Original, artwork6Original, artwork7Original, artwork8Original,
+  artwork9Original, artwork10Original, artwork11Original, artwork12Original
+} from '../assets';
 
 const galleryArtworkCollection = [
   {
@@ -7,8 +16,8 @@ const galleryArtworkCollection = [
     title: "Abstract Harmony",
     artist: "Jorge",
     artistId: 101,
-    imageUrl: artworkThumbnails.artwork1,
-    fullImageUrl: artworkOriginals.artwork1,
+    imageUrl: artwork1Thumbnail,
+    fullImageUrl: artwork1Original,
     likes: 342,
     views: 1205,
     category: "Digital Art",
@@ -23,8 +32,8 @@ const galleryArtworkCollection = [
     title: "Anicient Water",
     artist: "Gray",
     artistId: 102,
-    imageUrl: artworkThumbnails.artwork2,
-    fullImageUrl: artworkOriginals.artwork2,
+    imageUrl: artwork2Thumbnail,
+    fullImageUrl: artwork2Original,
     likes: 287,
     views: 946,
     category: "Painting",
@@ -39,8 +48,8 @@ const galleryArtworkCollection = [
     title: "Urban Expressions",
     artist: "Tanya",
     artistId: 103,
-    imageUrl: artworkThumbnails.artwork3,
-    fullImageUrl: artworkOriginals.artwork3,
+    imageUrl: artwork3Thumbnail,
+    fullImageUrl: artwork3Original,
     likes: 456,
     views: 1780,
     category: "Illustration",
@@ -55,8 +64,8 @@ const galleryArtworkCollection = [
     title: "Digital Landscape",
     artist: "James",
     artistId: 104,
-    imageUrl: artworkThumbnails.artwork4,
-    fullImageUrl: artworkOriginals.artwork4,
+    imageUrl: artwork4Thumbnail,
+    fullImageUrl: artwork4Original,
     likes: 189,
     views: 842,
     category: "Digital Art",
@@ -71,8 +80,8 @@ const galleryArtworkCollection = [
     title: "Neon Reflections",
     artist: "Alex",
     artistId: 105,
-    imageUrl: artworkThumbnails.artwork5,
-    fullImageUrl: artworkOriginals.artwork5,
+    imageUrl: artwork5Thumbnail,
+    fullImageUrl: artwork5Original,
     likes: 512,
     views: 2150,
     category: "Painting",
@@ -87,8 +96,8 @@ const galleryArtworkCollection = [
     title: "Watercolor Dreams",
     artist: "Sophie",
     artistId: 106,
-    imageUrl: artworkThumbnails.artwork6,
-    fullImageUrl: artworkOriginals.artwork6,
+    imageUrl: artwork6Thumbnail,
+    fullImageUrl: artwork6Original,
     likes: 387,
     views: 1423,
     category: "Painting",
@@ -103,8 +112,8 @@ const galleryArtworkCollection = [
     title: "Fractured Reality",
     artist: "David",
     artistId: 107,
-    imageUrl: artworkThumbnails.artwork7,
-    fullImageUrl: artworkOriginals.artwork7,
+    imageUrl: artwork7Thumbnail,
+    fullImageUrl: artwork7Original,
     likes: 467,
     views: 1842,
     category: "Digital Art",
@@ -119,8 +128,8 @@ const galleryArtworkCollection = [
     title: "Painting Patterns",
     artist: "Omar",
     artistId: 108,
-    imageUrl: artworkThumbnails.artwork8,
-    fullImageUrl: artworkOriginals.artwork8,
+    imageUrl: artwork8Thumbnail,
+    fullImageUrl: artwork8Original,
     likes: 412,
     views: 1689,
     category: "Painting",
@@ -135,8 +144,8 @@ const galleryArtworkCollection = [
     title: "Cityscape at Dusk",
     artist: "Leo",
     artistId: 109,
-    imageUrl: artworkThumbnails.artwork9,
-    fullImageUrl: artworkOriginals.artwork9,
+    imageUrl: artwork9Thumbnail,
+    fullImageUrl: artwork9Original,
     likes: 476,
     views: 1980,
     category: "Painting",
@@ -151,8 +160,8 @@ const galleryArtworkCollection = [
     title: "Ocean Serenity",
     artist: "Sophia",
     artistId: 110,
-    imageUrl: artworkThumbnails.artwork10,
-    fullImageUrl: artworkOriginals.artwork10,
+    imageUrl: artwork10Thumbnail,
+    fullImageUrl: artwork10Original,
     likes: 355,
     views: 1280,
     category: "Digital Art",
@@ -167,8 +176,8 @@ const galleryArtworkCollection = [
     title: "Abstract Dreams",
     artist: "Jason",
     artistId: 111,
-    imageUrl: artworkThumbnails.artwork11,
-    fullImageUrl: artworkOriginals.artwork11,
+    imageUrl: artwork11Thumbnail,
+    fullImageUrl: artwork11Original,
     likes: 410,
     views: 1520,
     category: "Digital Art",
@@ -183,8 +192,8 @@ const galleryArtworkCollection = [
     title: "Nature's Beauty",
     artist: "Arohan",
     artistId: 112,
-    imageUrl: artworkThumbnails.artwork12,
-    fullImageUrl: artworkOriginals.artwork12,
+    imageUrl: artwork12Thumbnail,
+    fullImageUrl: artwork12Original,
     likes: 375,
     views: 1340,
     category: "Painting",
@@ -350,4 +359,25 @@ export const ArtworksProvider = ({ children }) => {
       {children}
     </GalleryArtworkContext.Provider>
   );
+};
+
+export const getArtworkById = (id, type = 'thumbnail') => {
+  const artworkData = {
+    1: { thumbnail: artwork1Thumbnail, original: artwork1Original },
+    2: { thumbnail: artwork2Thumbnail, original: artwork2Original },
+    3: { thumbnail: artwork3Thumbnail, original: artwork3Original },
+    4: { thumbnail: artwork4Thumbnail, original: artwork4Original },
+    5: { thumbnail: artwork5Thumbnail, original: artwork5Original },
+    6: { thumbnail: artwork6Thumbnail, original: artwork6Original },
+    7: { thumbnail: artwork7Thumbnail, original: artwork7Original },
+    8: { thumbnail: artwork8Thumbnail, original: artwork8Original },
+    9: { thumbnail: artwork9Thumbnail, original: artwork9Original },
+    10: { thumbnail: artwork10Thumbnail, original: artwork10Original },
+    11: { thumbnail: artwork11Thumbnail, original: artwork11Original },
+    12: { thumbnail: artwork12Thumbnail, original: artwork12Original },
+  };
+  
+  return type === 'thumbnail' 
+    ? artworkData[id]?.thumbnail 
+    : artworkData[id]?.original;
 }; 
