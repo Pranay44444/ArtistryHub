@@ -1,0 +1,300 @@
+.home-page {
+  min-height: 100vh;
+  background-color: var(--bg-main);
+}
+.hero-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(102, 51, 153, 0.7), rgba(0, 128, 128, 0.7));
+  z-index: 10;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-content {
+  max-width: 48rem;
+  position: relative;
+  z-index: 20;
+}
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+.hero-animation {
+  display: block;
+  margin-top: 0.5rem;
+}
+.hero-description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+.scroll-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-icon {
+  color: white;
+  transform: rotate(90deg);
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+.featured-section {
+  padding: 5rem 0;
+  background-color: var(--bg-alt);
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  display: none;
+}
+.section-description {
+  color: var(--text-secondary);
+  max-width: 32rem;
+  margin: 0 auto;
+}
+.section-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  background-color: #7C3AED;
+  border: 1px solid #7C3AED;
+}
+.view-all-link:hover {
+  background-color: white;
+  color: #7C3AED;
+  border: 1px solid #7C3AED;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+.how-it-works-section {
+  padding: 5rem 0;
+  background-color: var(--bg-main);
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+@media (min-width: 768px) {
+  .steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.step-card {
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: var(--bg-card);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.step-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 25px -5px var(--shadow-color);
+}
+.step-card .step-num {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000 !important;
+  margin-bottom: 1.5rem;
+}
+.step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+.step-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.cta-section {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(102, 51, 153, 0.8), rgba(0, 128, 128, 0.8));
+  z-index: 10;
+}
+.cta-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.cta-content {
+  position: relative;
+  z-index: 20;
+  max-width: 36rem;
+  margin: 0 auto;
+  text-align: center;
+}
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+.cta-description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  background-color: white;
+  color: var(--primary-color);
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+}
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.explore-gallery-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+}
+.explore-gallery-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px var(--shadow-color);
+}

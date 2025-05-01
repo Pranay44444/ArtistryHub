@@ -1,0 +1,303 @@
+.gallery-page {
+  padding: 7rem 0 2rem;
+  min-height: 90vh;
+  background-color: var(--bg-main);
+  transition: background-color 0.3s ease;
+}
+.gallery-page .gallery-container {
+  max-width: 1400px !important;
+  width: 95% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+.gallery-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.gallery-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #000000;
+  transition: color 0.3s ease;
+}
+.gallery-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  transition: color 0.3s ease;
+}
+.gallery-page .search-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.search-filter-container {
+  display: none;
+}
+.gallery-page .search-form {
+  flex: 1;
+  min-width: 250px;
+}
+.gallery-page .search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+.gallery-page .search-input {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 2.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(126, 87, 194, 0.1);
+}
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+.clear-search {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.clear-search:hover {
+  color: var(--error);
+}
+.filter-buttons {
+  display: none;
+}
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.filter-button:hover {
+  background-color: var(--hover-bg);
+  border-color: var(--primary-color);
+}
+.filter-text {
+  display: none;
+}
+.chevron-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.2s ease;
+}
+.chevron-icon.rotate {
+  transform: rotate(180deg);
+}
+.sort-select {
+  padding: 0.6rem 2.5rem 0.6rem 1.25rem;
+  background-color: var(--bg-alt);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+.sort-select:hover {
+  background-color: var(--hover-bg);
+}
+.sort-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(126, 87, 194, 0.1);
+}
+.filter-panel-header,
+.filter-panel-title,
+.clear-filters,
+.filter-options,
+.filter-section,
+.filter-section-title,
+.filter-tags,
+.filter-tag,
+.filter-tag.active,
+.filter-badge,
+.filter-badge.category,
+.filter-badge.style,
+.remove-filter {
+  display: none;
+}
+.filter-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 300px;
+  background-color: var(--dropdown-bg);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  z-index: 100;
+  display: none;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.filter-dropdown.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.filter-section {
+  margin-bottom: 1.5rem;
+}
+.filter-section:last-child {
+  margin-bottom: 0;
+}
+.filter-section-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.filter-tag {
+  padding: 0.375rem 0.75rem;
+  background-color: var(--bg-alt);
+  border-radius: 9999px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.filter-tag:hover {
+  background-color: var(--hover-bg);
+  color: var(--primary-color);
+}
+.filter-tag.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+.sort-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sort-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+.sort-option:hover {
+  background-color: var(--hover-bg);
+}
+.sort-radio {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-color);
+}
+.sort-label {
+  color: var(--text-primary);
+}
+.filters-applied {
+  margin-bottom: 2rem;
+}
+.applied-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.applied-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  background-color: var(--bg-alt);
+  border-radius: 9999px;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+.remove-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.remove-filter:hover {
+  color: var(--error);
+}
+.clear-all-filters {
+  margin-left: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.clear-all-filters:hover {
+  text-decoration: underline;
+}
+@media (max-width: 640px) {
+  .gallery-container {
+    padding: 0 1rem;
+  }
+  .gallery-title {
+    font-size: 2rem;
+  }
+  .gallery-page .search-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .gallery-page .search-input {
+    padding: 0.75rem 2.5rem 0.75rem 2.2rem;
+    font-size: 0.9rem;
+  }
+  .search-icon {
+    left: 0.75rem;
+  }
+  .filter-dropdown {
+    width: 100%;
+    right: auto;
+  }
+}
