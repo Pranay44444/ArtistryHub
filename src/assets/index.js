@@ -1,49 +1,85 @@
+// Import images directly 
+import artwork1Original from './artworks/originals/artwork1.png';
+import artwork2Original from './artworks/originals/artwork2.jpg';
+import artwork3Original from './artworks/originals/artwork3.jpg';
+import artwork4Original from './artworks/originals/artwork4.jpeg';
+import artwork5Original from './artworks/originals/artwork5.webp';
+import artwork6Original from './artworks/originals/artwork6.jpeg';
+import artwork7Original from './artworks/originals/artwork7.jpg';
+import artwork8Original from './artworks/originals/artwork8.webp';
+import artwork9Original from './artworks/originals/artwork9.jpg';
+import artwork10Original from './artworks/originals/artwork10.jpg';
+import artwork11Original from './artworks/originals/artwork11.jpeg';
+import artwork12Original from './artworks/originals/artwork12.jpg';
+
+import artwork1Thumbnail from './artworks/thumbnails/artwork1.png';
+import artwork2Thumbnail from './artworks/thumbnails/artwork2.jpg';
+import artwork3Thumbnail from './artworks/thumbnails/artwork3.jpg';
+import artwork4Thumbnail from './artworks/thumbnails/artwork4.jpeg';
+import artwork5Thumbnail from './artworks/thumbnails/artwork5.webp';
+import artwork6Thumbnail from './artworks/thumbnails/artwork6.jpeg';
+import artwork7Thumbnail from './artworks/thumbnails/artwork7.jpg';
+import artwork8Thumbnail from './artworks/thumbnails/artwork8.webp';
+import artwork9Thumbnail from './artworks/thumbnails/artwork9.jpg';
+import artwork10Thumbnail from './artworks/thumbnails/artwork10.jpg';
+import artwork11Thumbnail from './artworks/thumbnails/artwork11.jpeg';
+import artwork12Thumbnail from './artworks/thumbnails/artwork12.jpg';
+
+import homeHeroImage from './heroes/home-hero.jpeg';
+import ctaHeroImage from './heroes/bottom-hero.png';
+
+// Define the asset objects with imported images
 export const artworkOriginals = {
-  artwork1: '/src/assets/artworks/originals/artwork1.png',
-  artwork2: '/src/assets/artworks/originals/artwork2.jpg',
-  artwork3: '/src/assets/artworks/originals/artwork3.jpg',
-  artwork4: '/src/assets/artworks/originals/artwork4.jpeg',
-  artwork5: '/src/assets/artworks/originals/artwork5.webp',
-  artwork6: '/src/assets/artworks/originals/artwork6.jpeg',
-  artwork7: '/src/assets/artworks/originals/artwork7.jpg',
-  artwork8: '/src/assets/artworks/originals/artwork8.webp',
-  artwork9: '/src/assets/artworks/originals/artwork9.jpg',
-  artwork10: '/src/assets/artworks/originals/artwork10.jpg',
-  artwork11: '/src/assets/artworks/originals/artwork11.jpeg',
-  artwork12: '/src/assets/artworks/originals/artwork12.jpg',
+  artwork1: artwork1Original,
+  artwork2: artwork2Original,
+  artwork3: artwork3Original,
+  artwork4: artwork4Original,
+  artwork5: artwork5Original,
+  artwork6: artwork6Original,
+  artwork7: artwork7Original,
+  artwork8: artwork8Original,
+  artwork9: artwork9Original,
+  artwork10: artwork10Original,
+  artwork11: artwork11Original,
+  artwork12: artwork12Original,
 };
+
 export const artworkThumbnails = {
-  artwork1: '/src/assets/artworks/thumbnails/artwork1.png',
-  artwork2: '/src/assets/artworks/thumbnails/artwork2.jpg',
-  artwork3: '/src/assets/artworks/thumbnails/artwork3.jpg',
-  artwork4: '/src/assets/artworks/thumbnails/artwork4.jpeg',
-  artwork5: '/src/assets/artworks/thumbnails/artwork5.webp',
-  artwork6: '/src/assets/artworks/thumbnails/artwork6.jpeg',
-  artwork7: '/src/assets/artworks/thumbnails/artwork7.jpg',
-  artwork8: '/src/assets/artworks/thumbnails/artwork8.webp',
-  artwork9: '/src/assets/artworks/thumbnails/artwork9.jpg',
-  artwork10: '/src/assets/artworks/thumbnails/artwork10.jpg',
-  artwork11: '/src/assets/artworks/thumbnails/artwork11.jpeg',
-  artwork12: '/src/assets/artworks/thumbnails/artwork12.jpg',
+  artwork1: artwork1Thumbnail,
+  artwork2: artwork2Thumbnail,
+  artwork3: artwork3Thumbnail,
+  artwork4: artwork4Thumbnail,
+  artwork5: artwork5Thumbnail,
+  artwork6: artwork6Thumbnail,
+  artwork7: artwork7Thumbnail,
+  artwork8: artwork8Thumbnail,
+  artwork9: artwork9Thumbnail,
+  artwork10: artwork10Thumbnail,
+  artwork11: artwork11Thumbnail,
+  artwork12: artwork12Thumbnail,
 };
+
 export const heroImages = {
-  homeHero: '/src/assets/heroes/home-hero.jpeg',
-  ctaHero: '/src/assets/heroes/bottom-hero.png',
+  homeHero: homeHeroImage,
+  ctaHero: ctaHeroImage,
 };
+
+// For avatars, we'll use remote URLs which are always accessible
 export const artistAvatars = {
-  avatar1: '/src/assets/avatars/avatar1.jpeg',
-  avatar2: '/src/assets/avatars/avatar2.jpeg',
-  avatar3: '/src/assets/avatars/avatar3.jpeg',
-  avatar4: '/src/assets/avatars/avatar4.jpeg',
-  avatar5: '/src/assets/avatars/avatar5.jpeg',
-  avatar6: '/src/assets/avatars/avatar6.jpeg',
-  avatar7: '/src/assets/avatars/avatar7.jpeg',
-  avatar8: '/src/assets/avatars/avatar8.jpeg',
-  avatar9: '/src/assets/avatars/avatar9.jpeg',
-  avatar10: '/src/assets/avatars/avatar10.jpeg',
-  avatar11: '/src/assets/avatars/avatar11.jpeg',
-  avatar12: '/src/assets/avatars/avatar12.jpeg',
+  avatar1: 'https://randomuser.me/api/portraits/men/1.jpg',
+  avatar2: 'https://randomuser.me/api/portraits/women/2.jpg',
+  avatar3: 'https://randomuser.me/api/portraits/women/3.jpg',
+  avatar4: 'https://randomuser.me/api/portraits/men/4.jpg',
+  avatar5: 'https://randomuser.me/api/portraits/women/5.jpg',
+  avatar6: 'https://randomuser.me/api/portraits/men/6.jpg',
+  avatar7: 'https://randomuser.me/api/portraits/women/7.jpg',
+  avatar8: 'https://randomuser.me/api/portraits/men/8.jpg',
+  avatar9: 'https://randomuser.me/api/portraits/women/9.jpg',
+  avatar10: 'https://randomuser.me/api/portraits/men/10.jpg',
+  avatar11: 'https://randomuser.me/api/portraits/women/11.jpg',
+  avatar12: 'https://randomuser.me/api/portraits/men/12.jpg',
 };
+
 export const artistData = {
   101: { name: "Elena Kim", avatar: artistAvatars.avatar1 },
   102: { name: "Marcus Chen", avatar: artistAvatars.avatar2 },
@@ -58,6 +94,7 @@ export const artistData = {
   111: { name: "Jason Kim", avatar: artistAvatars.avatar11 },
   112: { name: "Emma Wilson", avatar: artistAvatars.avatar12 }
 };
+
 export const artworkData = {
   1: { title: "Abstract Harmony", thumbnail: artworkThumbnails.artwork1, original: artworkOriginals.artwork1, artist: 101 },
   2: { title: "Sunset Dreams", thumbnail: artworkThumbnails.artwork2, original: artworkOriginals.artwork2, artist: 102 },
@@ -72,19 +109,23 @@ export const artworkData = {
   11: { title: "Abstract Dreams", thumbnail: artworkThumbnails.artwork11, original: artworkOriginals.artwork11, artist: 111 },
   12: { title: "Nature's Beauty", thumbnail: artworkThumbnails.artwork12, original: artworkOriginals.artwork12, artist: 112 }
 };
+
 export const getArtworkById = (id, type = 'thumbnail') => {
   const key = `artwork${id}`;
   return type === 'thumbnail' 
     ? artworkThumbnails[key] 
     : artworkOriginals[key];
 };
+
 export const getArtistAvatarById = (id) => {
   const key = `avatar${id.toString().replace('10', '')}`;
   return artistAvatars[key] || null;
 };
+
 export const getArtistNameById = (id) => {
   return artistData[id]?.name || "Unknown Artist";
 };
+
 export const getFullArtworkInfo = (id) => {
   const artwork = artworkData[id];
   if (!artwork) return null;
@@ -98,6 +139,7 @@ export const getFullArtworkInfo = (id) => {
     artistAvatar: artistData[artwork.artist]?.avatar
   };
 };
+
 export default {
   artworkOriginals,
   artworkThumbnails,
