@@ -67,3 +67,4 @@ After starting the development server, navigate to `http://localhost:5173` in yo
 
 This project is licensed under the MIT License - see the LICENSE file for details. # Artistry-Hub
 # Artistry-Hub
+# Artistry-Hub
