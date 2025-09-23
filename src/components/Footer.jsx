@@ -44,26 +44,6 @@ function Footer() {
               <li><a href="mailto:chitarepranay85@gmail.com" className="footer-link">Support</a></li>
             </ul>
           </div>
-          <div className="footer-section">
-            <h4 className="footer-heading">Join Our Newsletter</h4>
-            <p className="footer-description">
-              Stay updated with the latest artworks and events.
-            </p>
-            <form className="newsletter-form">
-              <div className="newsletter-container">
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
-                  className="newsletter-input"
-                  aria-label="Email for newsletter"
-                  required
-                />
-                <button type="submit" className="newsletter-button">
-                  Subscribe
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} ArtistryHub. All rights reserved.</p>

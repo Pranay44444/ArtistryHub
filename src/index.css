@@ -215,10 +215,7 @@ button {
   background: var(--primary-dark);
 }
 .gradient-text {
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--secondary-color);
 }
 .gradient-bg {
   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));

@@ -21,6 +21,19 @@ const ResetPasswordPage = () => {
       setEmail(location.state.email);
     }
   }, [location]);
+
+
+  useEffect(() => {
+    return () => {
+      if (!success) {
+        try {
+          clerk.signOut();
+        } catch (err) {
+          console.log('Cleanup sign out:', err);
+        }
+      }
+    };
+  }, [clerk, success]);
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -58,28 +71,28 @@ const ResetPasswordPage = () => {
     setError('');
     
     try {
-      const signInAttempt = await clerk.client.signIn.create({
-        identifier: email,
-        strategy: "reset_password_email_code",
-      });
+      let currentSignInAttempt = clerk.client.signIn;
       
-      const emailFactor = signInAttempt.supportedFirstFactors.find(
-        factor => factor.strategy === "reset_password_email_code"
-      );
-      
-      if (!emailFactor || !emailFactor.emailAddressId) {
-        throw new Error('Could not find email for verification');
+      if (!currentSignInAttempt) {
+        setError('No active reset session found. Please go back and request a new reset code.');
+        setLoading(false);
+        return;
       }
       
-      await signInAttempt.attemptFirstFactor({
+      await currentSignInAttempt.attemptFirstFactor({
         strategy: "reset_password_email_code",
-        code: verificationCode,
-        emailAddressId: emailFactor.emailAddressId
+        code: verificationCode
       });
       
-      await signInAttempt.resetPassword({
+      await currentSignInAttempt.resetPassword({
         password: newPassword,
       });
+      
+      try {
+        await clerk.signOut();
+      } catch (signOutError) {
+        console.log('Sign out after reset (expected):', signOutError);
+      }
       
       setSuccess(true);
       setVerificationCode('');
@@ -93,11 +106,18 @@ const ResetPasswordPage = () => {
     } catch (err) {
       console.error('Reset password error:', err);
       if (err.errors && err.errors.length > 0) {
-        setError(err.errors[0].message);
+        const errorMessage = err.errors[0].message;
+        if (errorMessage.includes('Invalid code')) {
+          setError('Invalid verification code. Please check and try again.');
+        } else if (errorMessage.includes('expired')) {
+          setError('Verification code has expired. Please request a new one.');
+        } else {
+          setError(errorMessage);
+        }
       } else if (err.message) {
         setError(err.message);
       } else {
-        setError('Failed to reset password. Please check your verification code.');
+        setError('Failed to reset password. Please try again.');
       }
     } finally {
       setLoading(false);
@@ -144,7 +164,19 @@ const ResetPasswordPage = () => {
         <div className="success-container">
           <p className="success-message">Your password has been reset successfully!</p>
           <p className="redirect-message">You will be redirected to the login page...</p>
-          <Link to="/login" className="login-link">Go to Login</Link>
+          <Link 
+            to="/login" 
+            className="login-link"
+            onClick={() => {
+              try {
+                clerk.signOut();
+              } catch (err) {
+                console.log('Sign out on navigation:', err);
+              }
+            }}
+          >
+            Go to Login
+          </Link>
         </div>
       ) : (
         <form className="reset-password-form" onSubmit={handleSubmit}>
