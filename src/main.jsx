@@ -5,16 +5,10 @@ import { BrowserRouter } from 'react-router-dom';
 import ArtistryHubApp from './App';
 import './index.css';
 
-// Ensure we have a fallback for the publishable key in all environments
-const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || 
-  process.env.VITE_CLERK_PUBLISHABLE_KEY || 
-  "pk_test_Zmx1ZW50LWJsdWVqYXktOS5jbGVyay5hY2NvdW50cy5kZXYk";
+const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || "pk_test_Zmx1ZW50LWJsdWVqYXktOS5jbGVyay5hY2NvdW50cy5kZXYk";
 
-console.log("Environment check: Using Clerk with publishable key available:", !!publishableKey);
-
-// Check for environment errors
 if (!publishableKey) {
-  console.error("Missing Clerk Publishable Key - authentication will not work properly");
+  throw new Error("Missing Clerk Publishable Key");
 }
 
 const clerkAppearanceConfig = {
@@ -57,7 +51,7 @@ createRoot(document.getElementById('root')).render(
       publishableKey={publishableKey}
       appearance={clerkAppearanceConfig}
     >
-      <BrowserRouter basename="/">
+      <BrowserRouter>
         <ArtistryHubApp />
       </BrowserRouter>
     </ClerkProvider>

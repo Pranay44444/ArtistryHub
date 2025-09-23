@@ -5,13 +5,16 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   server: {
+    port: 3000, // Use port 3000 instead of default 5173
     open: true,
+    host: 'localhost', // Explicitly set host
     hmr: {
       overlay: true
     }
   },
   preview: {
-    open: true
+    open: true,
+    port: 3001 // Different port for preview
   },
   optimizeDeps: {
     force: true,

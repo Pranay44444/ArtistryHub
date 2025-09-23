@@ -17,7 +17,6 @@ const ResetPasswordPage = () => {
   const clerk = useClerk();
   
   useEffect(() => {
-    // Get email from location state (passed from ForgotPasswordPage)
     if (location.state?.email) {
       setEmail(location.state.email);
     }
@@ -38,7 +37,6 @@ const ResetPasswordPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Validate inputs
     if (!email.trim()) {
       setError('Please enter your email address');
       return;
@@ -84,12 +82,10 @@ const ResetPasswordPage = () => {
       });
       
       setSuccess(true);
-      // Clear form fields
       setVerificationCode('');
       setNewPassword('');
       setConfirmPassword('');
       
-      // Show success message before redirecting
       setTimeout(() => {
         navigate('/login');
       }, 3000);
