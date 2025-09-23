@@ -10,9 +10,7 @@ function ArtworkGrid({ filters, searchQuery }) {
   const { artworks } = useArtworks();
   const [filteredArtworks, setFilteredArtworks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
-  const loadingRef = useRef(null);
   const gridRef = useRef(null);
 
   useEffect(() => {
@@ -53,27 +51,8 @@ function ArtworkGrid({ filters, searchQuery }) {
     setFilteredArtworks(filtered);
     setLoading(false);
     setPage(1);
-    setHasMore(filtered.length > 0);
   }, [searchQuery, filters, artworks]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPage(prevPage => prevPage + 1);
-        }
-      },
-      { threshold: 1.0 }
-    );
-    if (loadingRef.current) {
-      observer.observe(loadingRef.current);
-    }
-    return () => {
-      if (loadingRef.current) {
-        observer.unobserve(loadingRef.current);
-      }
-    };
-  }, [hasMore]);
 
   useEffect(() => {
     if (gridRef.current && filteredArtworks.length > 0) {
@@ -137,11 +116,6 @@ function ArtworkGrid({ filters, searchQuery }) {
           </div>
         ))}
       </div>
-      {hasMore && (
-        <div ref={loadingRef} className="loading-more">
-          <div className="loading-spinner"></div>
-        </div>
-      )}
     </div>
   );
 }
