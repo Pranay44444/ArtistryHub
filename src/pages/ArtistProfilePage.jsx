@@ -182,7 +182,7 @@ function ArtistProfilePage() {
                     <div className="rounded-xl overflow-hidden shadow-md bg-gray-100">
                       <div className={`${layout === 'grid' ? 'aspect-[4/5]' : 'aspect-[16/9]'} overflow-hidden relative`}>
                         <img
-                          src={`/src/assets/artworks/thumbnails/artwork${(index % 12) + 1}.jpg`}
+                          src={`/artworks/artwork${(index % 12) + 1}.jpg?v=1`}
                           alt="Artwork"
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
@@ -206,28 +206,28 @@ function ArtistProfilePage() {
                     <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-0.5">
                       <div className="overflow-hidden">
                         <img 
-                          src={`/src/assets/artworks/thumbnails/artwork${(index * 2) % 12 + 1}.jpg`}
+                          src={`/artworks/artwork${(index * 2) % 12 + 1}.jpg?v=1`}
                           alt="Collection artwork" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="overflow-hidden">
                         <img 
-                          src={`/src/assets/artworks/thumbnails/artwork${(index * 2 + 1) % 12 + 1}.jpg`}
+                          src={`/artworks/artwork${(index * 2 + 1) % 12 + 1}.jpg?v=1`}
                           alt="Collection artwork" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="overflow-hidden">
                         <img 
-                          src={`/src/assets/artworks/thumbnails/artwork${(index * 2 + 2) % 12 + 1}.jpg`}
+                          src={`/artworks/artwork${(index * 2 + 2) % 12 + 1}.jpg?v=1`}
                           alt="Collection artwork" 
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="overflow-hidden relative">
                         <img 
-                          src={`/src/assets/artworks/thumbnails/artwork${(index * 2 + 3) % 12 + 1}.jpg`}
+                          src={`/artworks/artwork${(index * 2 + 3) % 12 + 1}.jpg?v=1`}
                           alt="Collection artwork" 
                           className="w-full h-full object-cover"
                         />

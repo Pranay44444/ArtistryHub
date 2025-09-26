@@ -1,14 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { 
-  // Import all artwork images directly
-  artwork1Thumbnail, artwork2Thumbnail, artwork3Thumbnail, artwork4Thumbnail,
-  artwork5Thumbnail, artwork6Thumbnail, artwork7Thumbnail, artwork8Thumbnail,
-  artwork9Thumbnail, artwork10Thumbnail, artwork11Thumbnail, artwork12Thumbnail,
-  
-  artwork1Original, artwork2Original, artwork3Original, artwork4Original,
-  artwork5Original, artwork6Original, artwork7Original, artwork8Original,
-  artwork9Original, artwork10Original, artwork11Original, artwork12Original
-} from '../assets';
+const artwork1Thumbnail = '/artworks/artwork1.png?v=1';
+const artwork2Thumbnail = '/artworks/artwork2.jpg?v=1';
+const artwork3Thumbnail = '/artworks/artwork3.jpg?v=1';
+const artwork4Thumbnail = '/artworks/artwork4.jpeg?v=1';
+const artwork5Thumbnail = '/artworks/artwork5.webp?v=1';
+const artwork6Thumbnail = '/artworks/artwork6.jpeg?v=1';
+const artwork7Thumbnail = '/artworks/artwork7.jpg?v=1';
+const artwork8Thumbnail = '/artworks/artwork8.webp?v=1';
+const artwork9Thumbnail = '/artworks/artwork9.jpg?v=1';
+const artwork10Thumbnail = '/artworks/artwork10.jpg?v=1';
+const artwork11Thumbnail = '/artworks/artwork11.jpeg?v=1';
+const artwork12Thumbnail = '/artworks/artwork12.jpg?v=1';
+
+
+
 
 const galleryArtworkCollection = [
   {
@@ -17,7 +22,7 @@ const galleryArtworkCollection = [
     artist: "Jorge",
     artistId: 101,
     imageUrl: artwork1Thumbnail,
-    fullImageUrl: artwork1Original,
+    fullImageUrl: artwork1Thumbnail,
     likes: 342,
     views: 1205,
     category: "Digital Art",
@@ -33,7 +38,7 @@ const galleryArtworkCollection = [
     artist: "Gray",
     artistId: 102,
     imageUrl: artwork2Thumbnail,
-    fullImageUrl: artwork2Original,
+    fullImageUrl: artwork2Thumbnail,
     likes: 287,
     views: 946,
     category: "Painting",
@@ -49,7 +54,7 @@ const galleryArtworkCollection = [
     artist: "Tanya",
     artistId: 103,
     imageUrl: artwork3Thumbnail,
-    fullImageUrl: artwork3Original,
+    fullImageUrl: artwork3Thumbnail,
     likes: 456,
     views: 1780,
     category: "Illustration",
@@ -65,7 +70,7 @@ const galleryArtworkCollection = [
     artist: "James",
     artistId: 104,
     imageUrl: artwork4Thumbnail,
-    fullImageUrl: artwork4Original,
+    fullImageUrl: artwork4Thumbnail,
     likes: 189,
     views: 842,
     category: "Digital Art",
@@ -81,7 +86,7 @@ const galleryArtworkCollection = [
     artist: "Alex",
     artistId: 105,
     imageUrl: artwork5Thumbnail,
-    fullImageUrl: artwork5Original,
+    fullImageUrl: artwork5Thumbnail,
     likes: 512,
     views: 2150,
     category: "Painting",
@@ -97,7 +102,7 @@ const galleryArtworkCollection = [
     artist: "Sophie",
     artistId: 106,
     imageUrl: artwork6Thumbnail,
-    fullImageUrl: artwork6Original,
+    fullImageUrl: artwork6Thumbnail,
     likes: 387,
     views: 1423,
     category: "Painting",
@@ -113,7 +118,7 @@ const galleryArtworkCollection = [
     artist: "David",
     artistId: 107,
     imageUrl: artwork7Thumbnail,
-    fullImageUrl: artwork7Original,
+    fullImageUrl: artwork7Thumbnail,
     likes: 467,
     views: 1842,
     category: "Digital Art",
@@ -129,7 +134,7 @@ const galleryArtworkCollection = [
     artist: "Omar",
     artistId: 108,
     imageUrl: artwork8Thumbnail,
-    fullImageUrl: artwork8Original,
+    fullImageUrl: artwork8Thumbnail,
     likes: 412,
     views: 1689,
     category: "Painting",
@@ -145,7 +150,7 @@ const galleryArtworkCollection = [
     artist: "Leo",
     artistId: 109,
     imageUrl: artwork9Thumbnail,
-    fullImageUrl: artwork9Original,
+    fullImageUrl: artwork9Thumbnail,
     likes: 476,
     views: 1980,
     category: "Painting",
@@ -161,7 +166,7 @@ const galleryArtworkCollection = [
     artist: "Sophia",
     artistId: 110,
     imageUrl: artwork10Thumbnail,
-    fullImageUrl: artwork10Original,
+    fullImageUrl: artwork10Thumbnail,
     likes: 355,
     views: 1280,
     category: "Digital Art",
@@ -177,7 +182,7 @@ const galleryArtworkCollection = [
     artist: "Jason",
     artistId: 111,
     imageUrl: artwork11Thumbnail,
-    fullImageUrl: artwork11Original,
+    fullImageUrl: artwork11Thumbnail,
     likes: 410,
     views: 1520,
     category: "Digital Art",
@@ -193,7 +198,7 @@ const galleryArtworkCollection = [
     artist: "Arohan",
     artistId: 112,
     imageUrl: artwork12Thumbnail,
-    fullImageUrl: artwork12Original,
+    fullImageUrl: artwork12Thumbnail,
     likes: 375,
     views: 1340,
     category: "Painting",
@@ -218,8 +223,8 @@ export const useArtworks = () => {
 export const ArtworksProvider = ({ children }) => {
   
   const [artworkCollection, setArtworkCollection] = useState(() => {
-    const savedArtworks = localStorage.getItem('artworkCollection');
-    return savedArtworks ? JSON.parse(savedArtworks) : galleryArtworkCollection;
+    localStorage.removeItem('artworkCollection');
+    return galleryArtworkCollection;
   });
   
   
@@ -361,23 +366,21 @@ export const ArtworksProvider = ({ children }) => {
   );
 };
 
-export const getArtworkById = (id, type = 'thumbnail') => {
+export const getArtworkById = (id) => {
   const artworkData = {
-    1: { thumbnail: artwork1Thumbnail, original: artwork1Original },
-    2: { thumbnail: artwork2Thumbnail, original: artwork2Original },
-    3: { thumbnail: artwork3Thumbnail, original: artwork3Original },
-    4: { thumbnail: artwork4Thumbnail, original: artwork4Original },
-    5: { thumbnail: artwork5Thumbnail, original: artwork5Original },
-    6: { thumbnail: artwork6Thumbnail, original: artwork6Original },
-    7: { thumbnail: artwork7Thumbnail, original: artwork7Original },
-    8: { thumbnail: artwork8Thumbnail, original: artwork8Original },
-    9: { thumbnail: artwork9Thumbnail, original: artwork9Original },
-    10: { thumbnail: artwork10Thumbnail, original: artwork10Original },
-    11: { thumbnail: artwork11Thumbnail, original: artwork11Original },
-    12: { thumbnail: artwork12Thumbnail, original: artwork12Original },
+    1: artwork1Thumbnail,
+    2: artwork2Thumbnail,
+    3: artwork3Thumbnail,
+    4: artwork4Thumbnail,
+    5: artwork5Thumbnail,
+    6: artwork6Thumbnail,
+    7: artwork7Thumbnail,
+    8: artwork8Thumbnail,
+    9: artwork9Thumbnail,
+    10: artwork10Thumbnail,
+    11: artwork11Thumbnail,
+    12: artwork12Thumbnail,
   };
   
-  return type === 'thumbnail' 
-    ? artworkData[id]?.thumbnail 
-    : artworkData[id]?.original;
+  return artworkData[id];
 }; 

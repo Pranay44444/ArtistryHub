@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import { ChevronRight } from '@mui/icons-material';
 import FeaturedArtworks from '../components/FeaturedArtworks';
-import { homeHeroImage, ctaHeroImage } from '../assets';
+import heroImage from '../assets/heroes/home-hero.jpeg';
+import bottomHeroImage from '../assets/heroes/bottom-hero.png';
 import { useAuth } from '../contexts/AuthContext';
 import './HomePage.css';
 
@@ -41,7 +42,7 @@ function HomePage() {
         <div className="hero-background">
           <div className="hero-overlay"></div>
           <img 
-            src={homeHeroImage}
+            src={heroImage}
             alt="Creative artwork" 
             className="hero-image"
           />
@@ -141,24 +142,24 @@ function HomePage() {
         </div>
       </section>
       {}
-      <section className="cta-section">
-        <div className="cta-background">
-          <div className="cta-overlay"></div>
+      <section className="hero-bottom-section">
+        <div className="hero-bottom-background">
+          <div className="hero-bottom-overlay"></div>
           <img 
-            src={ctaHeroImage}
+            src={bottomHeroImage}
             alt="Creative space" 
-            className="cta-image"
+            className="hero-bottom-image"
           />
         </div>
         <div className="container">
-          <div className="cta-content">
-            <h2 className="cta-title">
+          <div className="hero-bottom-content">
+            <h2 className="hero-bottom-title">
               Ready to Share Your Artistic Vision?
             </h2>
-            <p className="cta-description">
+            <p className="hero-bottom-description">
               Join thousands of artists who have found their creative community on ArtistryHub.
             </p>
-            <a href="#" onClick={handleGetStarted} className="cta-button">
+            <a href="#" onClick={handleGetStarted} className="hero-bottom-button">
               Get Started Now <ChevronRight />
             </a>
           </div>

@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Visibility } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
-import { artwork1Original, artwork3Original, artwork7Original, artwork8Original, artwork9Original } from '../assets';
+const artwork1Thumbnail = '/artworks/artwork1.png?v=1';
+const artwork3Thumbnail = '/artworks/artwork3.jpg?v=1';
+const artwork7Thumbnail = '/artworks/artwork7.jpg?v=1';
+const artwork8Thumbnail = '/artworks/artwork8.webp?v=1';
+const artwork9Thumbnail = '/artworks/artwork9.jpg?v=1';
 import './FeaturedArtworks.css';
 
 const featuredArtworks = [
@@ -11,7 +15,7 @@ const featuredArtworks = [
     title: "Abstract Harmony",
     artist: "Jorge",
     artistId: 101,
-    imageUrl: artwork1Original,
+    imageUrl: artwork1Thumbnail,
     views: 1205
   },
   {
@@ -19,7 +23,7 @@ const featuredArtworks = [
     title: "Cityscape at Dusk",
     artist: "Leo",
     artistId: 109,
-    imageUrl: artwork9Original,
+    imageUrl: artwork9Thumbnail,
     views: 1980
   },
   {
@@ -27,7 +31,7 @@ const featuredArtworks = [
     title: "Urban Expressions",
     artist: "Tanya",
     artistId: 103,
-    imageUrl: artwork3Original,
+    imageUrl: artwork3Thumbnail,
     views: 1780
   },
   {
@@ -35,7 +39,7 @@ const featuredArtworks = [
     title: "Fractured Reality",
     artist: "David",
     artistId: 107,
-    imageUrl: artwork7Original,
+    imageUrl: artwork7Thumbnail,
     views: 1842
   },
   {
@@ -43,7 +47,7 @@ const featuredArtworks = [
     title: "Painting Patterns",
     artist: "Omar",
     artistId: 108,
-    imageUrl: artwork8Original,
+    imageUrl: artwork8Thumbnail,
     views: 1689
   }
 ];
