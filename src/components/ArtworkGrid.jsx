@@ -1,112 +1,106 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { Heart, Eye, Bookmark, Share2 } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
-import { useArtworks } from '../contexts/ArtworksContext';
-import './ArtworkGrid.css';
+import React, {useState,useEffect,useRef} from 'react'
+import {useTheme} from '../contexts/ThemeContext'
+import {useArtworks} from '../contexts/ArtworksContext'
+import {Link} from 'react-router-dom'
+import {Eye} from 'lucide-react'
+import './ArtworkGrid.css'
 
 function ArtworkGrid({ filters, searchQuery }) {
-  const { theme } = useTheme();
-  const { artworks } = useArtworks();
-  const [filteredArtworks, setFilteredArtworks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const gridRef = useRef(null);
+  const {theme} = useTheme()
+  const {artworks} = useArtworks()
+  const [displayedArtworks,setDisplayedArtworks] = useState([])
+  const [isLoading,setIsLoading] = useState(true)
+  const [currentPage,setCurrentPage] = useState(1)
+  const gridContainer = useRef(null)
 
   useEffect(() => {
-    let filtered = [...artworks];
+    let artworkList = [...artworks]
+    
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        art => 
-          art.title.toLowerCase().includes(query) || 
-          art.artist.toLowerCase().includes(query) ||
-          art.category.toLowerCase().includes(query) ||
-          art.style.toLowerCase().includes(query)
-      );
-    }
+      const searchText = searchQuery.toLowerCase()
+      artworkList = artworkList.filter((artwork)=> 
+          artwork.title.toLowerCase().includes(searchText) || 
+          artwork.artist.toLowerCase().includes(searchText) ||
+          artwork.category.toLowerCase().includes(searchText) ||
+          artwork.style.toLowerCase().includes(searchText)
+      )
+    }    
     if (filters.categories.length > 0) {
-      filtered = filtered.filter(art => 
-        filters.categories.includes(art.category)
-      );
-    }
+      artworkList = artworkList.filter((artwork)=> 
+        filters.categories.includes(artwork.category)
+      )
+    }    
     if (filters.styles.length > 0) {
-      filtered = filtered.filter(art => 
-        filters.styles.includes(art.style)
-      );
+      artworkList = artworkList.filter((artwork)=> 
+        filters.styles.includes(artwork.style)
+      )
+    }    
+    if (filters.sortBy=== 'recent') {
+      artworkList.sort((first,second)=> new Date(second.date) - new Date(first.date))
+    } else if (filters.sortBy=== 'popular') {
+      artworkList.sort((first,second)=> second.likes - first.likes)
+    } else if (filters.sortBy=== 'trending') {
+      artworkList.sort((first,second)=> second.views - first.views)
     }
-    switch (filters.sortBy) {
-      case 'recent':
-        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-        break;
-      case 'popular':
-        filtered.sort((a, b) => b.likes - a.likes);
-        break;
-      case 'trending':
-        filtered.sort((a, b) => b.views - a.views);
-        break;
-      default:
-        break;
-    }
-    setFilteredArtworks(filtered);
-    setLoading(false);
-    setPage(1);
-  }, [searchQuery, filters, artworks]);
-
+    
+    setDisplayedArtworks(artworkList)
+    setIsLoading(false)
+    setCurrentPage(1)
+  }, [searchQuery, filters, artworks])
 
   useEffect(() => {
-    if (gridRef.current && filteredArtworks.length > 0) {
-      console.log('Grid container:', gridRef.current);
-      console.log('Grid item count:', gridRef.current.querySelectorAll('.artwork-item').length);
-      console.log('Artwork count:', filteredArtworks.length);
+    if (gridContainer.current && displayedArtworks.length > 0) {
+      console.log('Grid container:',gridContainer.current)
+      console.log('Grid item count:',gridContainer.current.querySelectorAll('.item').length)
+      console.log('Artwork count:',displayedArtworks.length)
     }
-  }, [filteredArtworks, gridRef.current]);
+  }, [displayedArtworks,gridContainer.current])
 
-  if (loading) {
+  if (isLoading) {
     return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
+      <div className="loading">
+        <div className="spinner"></div>
       </div>
-    );
+    )
   }
 
-  if (filteredArtworks.length === 0) {
-    return (
-      <div className="no-results">
-        <div className="no-results-icon">
+  if (displayedArtworks.length===0){
+    return(
+      <div className="empty">
+        <div className="emptyicon">
           <svg className="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
           </svg>
         </div>
-        <h3 className="no-results-title">No artworks found</h3>
-        <p className="no-results-message">
+        <h3 className="emptytitle">No artworks found</h3>
+        <p className="emptytext">
           Try adjusting your search or filter criteria to find what you're looking for.
         </p>
       </div>
-    );
+    )
   }
 
   return (
-    <div className="artwork-grid-container" style={{width: '100%'}}>
-      <div className="artwork-grid" ref={gridRef} style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
-        {filteredArtworks.map(artwork => (
-          <div key={artwork.id} className="artwork-item" style={{width: '100%'}}>
-            <div className="artwork-card">
-              <Link to={`/artwork/${artwork.id}`} className="artwork-link">
-                <div className="artwork-image-container">
+    <div className="art-container" style={{width:'100%'}}>
+      <div className="grid" ref={gridContainer} style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'1.5rem'}}>
+        {displayedArtworks.map(artwork => (
+          <div key={artwork.id} className="item" style={{width:'100%'}}>
+            <div className="card">
+              <Link to={`/artwork/${artwork.id}`} className="art-link">
+                <div className="imagebox">
                   <img
                     src={artwork.imageUrl}
                     alt={artwork.title}
-                    className="artwork-image"
+                    className="image"
                     loading="lazy"
                   />
-                  <div className="artwork-category">
+                  <div className="tag">
                     {artwork.category}
                   </div>
-                  <div className="artwork-overlay">
-                    <h3 className="artwork-title">{artwork.title}</h3>
-                    <p className="artwork-artist">By {artwork.artist}</p>
-                    <div className="artwork-views">
+                  <div className="art-overlay">
+                    <h3 className="title">{artwork.title}</h3>
+                    <p className="artist">By {artwork.artist}</p>
+                    <div className="art-views">
                       <Eye size={16} /> <span>{artwork.views}</span>
                     </div>
                   </div>
@@ -117,7 +111,7 @@ function ArtworkGrid({ filters, searchQuery }) {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default ArtworkGrid;
+export default ArtworkGrid

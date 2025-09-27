@@ -1,6 +1,4 @@
 import React from 'react';
-// Import images directly 
-
 const artwork1Thumbnail = '/artworks/artwork1.png?v=1';
 const artwork2Thumbnail = '/artworks/artwork2.jpg?v=1';
 const artwork3Thumbnail = '/artworks/artwork3.jpg?v=1';
@@ -13,22 +11,18 @@ const artwork9Thumbnail = '/artworks/artwork9.jpg?v=1';
 const artwork10Thumbnail = '/artworks/artwork10.jpg?v=1';
 const artwork11Thumbnail = '/artworks/artwork11.jpeg?v=1';
 const artwork12Thumbnail = '/artworks/artwork12.jpg?v=1';
-
 import homeHeroImage from './heroes/home-hero.jpeg';
 import bottomHeroImage from './heroes/bottom-hero.png';
 
-// Export all images directly for better bundling
 export {
   // Thumbnail artwork exports
   artwork1Thumbnail, artwork2Thumbnail, artwork3Thumbnail, artwork4Thumbnail,
   artwork5Thumbnail, artwork6Thumbnail, artwork7Thumbnail, artwork8Thumbnail,
   artwork9Thumbnail, artwork10Thumbnail, artwork11Thumbnail, artwork12Thumbnail,
-  
-  // Hero images
   homeHeroImage, bottomHeroImage
 };
 
-// For avatars, we'll use remote URLs which are always accessible
+// For avatars
 export const artistAvatars = {
   avatar1: 'https://randomuser.me/api/portraits/men/1.jpg',
   avatar2: 'https://randomuser.me/api/portraits/women/2.jpg',
@@ -59,7 +53,6 @@ export const artistData = {
   112: { name: "Emma Wilson", avatar: artistAvatars.avatar12 }
 };
 
-// Artwork data with direct references to imports
 export const artworkData = {
   1: { title: "Abstract Harmony", thumbnail: artwork1Thumbnail, artist: 101 },
   2: { title: "Sunset Dreams", thumbnail: artwork2Thumbnail, artist: 102 },
@@ -91,7 +84,6 @@ export const getArtworkById = (id) => {
     11: artwork11Thumbnail,
     12: artwork12Thumbnail
   };
-  
   return artworkMap[id];
 };
 

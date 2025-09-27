@@ -1,21 +1,18 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-const artwork1Thumbnail = '/artworks/artwork1.png?v=1';
-const artwork2Thumbnail = '/artworks/artwork2.jpg?v=1';
-const artwork3Thumbnail = '/artworks/artwork3.jpg?v=1';
-const artwork4Thumbnail = '/artworks/artwork4.jpeg?v=1';
-const artwork5Thumbnail = '/artworks/artwork5.webp?v=1';
-const artwork6Thumbnail = '/artworks/artwork6.jpeg?v=1';
-const artwork7Thumbnail = '/artworks/artwork7.jpg?v=1';
-const artwork8Thumbnail = '/artworks/artwork8.webp?v=1';
-const artwork9Thumbnail = '/artworks/artwork9.jpg?v=1';
-const artwork10Thumbnail = '/artworks/artwork10.jpg?v=1';
-const artwork11Thumbnail = '/artworks/artwork11.jpeg?v=1';
-const artwork12Thumbnail = '/artworks/artwork12.jpg?v=1';
+import React,{createContext,useContext,useState,useEffect} from 'react'
+const artwork1Thumbnail = '/artworks/artwork1.png?v=1'
+const artwork2Thumbnail = '/artworks/artwork2.jpg?v=1'
+const artwork3Thumbnail = '/artworks/artwork3.jpg?v=1'
+const artwork4Thumbnail = '/artworks/artwork4.jpeg?v=1'
+const artwork5Thumbnail = '/artworks/artwork5.webp?v=1'
+const artwork6Thumbnail = '/artworks/artwork6.jpeg?v=1'
+const artwork7Thumbnail = '/artworks/artwork7.jpg?v=1'
+const artwork8Thumbnail = '/artworks/artwork8.webp?v=1'
+const artwork9Thumbnail = '/artworks/artwork9.jpg?v=1'
+const artwork10Thumbnail = '/artworks/artwork10.jpg?v=1'
+const artwork11Thumbnail = '/artworks/artwork11.jpeg?v=1'
+const artwork12Thumbnail = '/artworks/artwork12.jpg?v=1'
 
-
-
-
-const galleryArtworkCollection = [
+const artworkList = [
   {
     id: 1,
     title: "Abstract Harmony",
@@ -208,166 +205,126 @@ const galleryArtworkCollection = [
     price: 299,
     viewedBy: []
   }
-];
+]
 
-const GalleryArtworkContext = createContext();
-
-export const useArtworks = () => {
-  const artworkContext = useContext(GalleryArtworkContext);
-  if (!artworkContext) {
-    throw new Error('useArtworks must be used within an ArtworksProvider');
+const ArtContext = createContext()
+export const useArtworks = ()=> {
+  const context = useContext(ArtContext)
+  if (!context){
+    throw new Error('useArtworks must be used within an ArtworksProvider')
   }
-  return artworkContext;
-};
-
-export const ArtworksProvider = ({ children }) => {
-  
-  const [artworkCollection, setArtworkCollection] = useState(() => {
-    localStorage.removeItem('artworkCollection');
-    return galleryArtworkCollection;
-  });
-  
-  
-  useEffect(() => {
-    localStorage.setItem('artworkCollection', JSON.stringify(artworkCollection));
-  }, [artworkCollection]);
-
-  
-  const createNewArtwork = (artworkDetails) => {
-    
-    const highestId = artworkCollection.reduce(
-      (maxId, artwork) => Math.max(maxId, artwork.id),
-      0
-    );
-    
-    
-    const completeArtwork = {
-      ...artworkDetails,
+  return context
+}
+export const ArtworksProvider = ({children})=> {
+  const [artworks,setArtworks] = useState(() => {
+    localStorage.removeItem('artworkCollection')
+    return artworkList
+  })
+  useEffect(()=>{
+    localStorage.setItem('artworkCollection',JSON.stringify(artworks))
+  },[artworks])
+  const addNewArt = (details)=>{
+    const highestId = artworks.reduce((maxId,artwork)=> Math.max(maxId, artwork.id),0)
+    const newArt = {
+      ...details,
       id: highestId + 1,
       likes: 0,
       views: 0,
       date: new Date().toISOString().split('T')[0],
       viewedBy: []
-    };
-    
-    
-    setArtworkCollection(prevCollection => [...prevCollection, completeArtwork]);
-    
-    
-    return completeArtwork.id;
-  };
-
-  
-  const findArtworkById = (artworkId) => {
-    return artworkCollection.find(artwork => artwork.id === Number(artworkId));
-  };
-
-  
-  const recordArtworkView = (artworkId, userId) => {
-    if (!userId) return;
-    
-    setArtworkCollection(prevCollection => 
-      prevCollection.map(artwork => {
-        if (artwork.id === Number(artworkId) && !artwork.viewedBy.includes(userId)) {
-          return {
+    }
+    setArtworks(prevList => [...prevList, newArt])
+    return newArt.id
+  }
+  const findArt = (id)=>{
+    return artworks.find((artwork)=> artwork.id === Number(id))
+  }
+  const addView = (artId,userId)=> {
+    if (!userId) return
+    setArtworks(prevList => 
+      prevList.map(artwork => {
+        if (artwork.id === Number(artId) && !artwork.viewedBy.includes(userId)) {
+          return{
             ...artwork,
             views: artwork.views + 1,
-            viewedBy: [...artwork.viewedBy, userId]
-          };
+            viewedBy: [...artwork.viewedBy,userId]
+          }
         }
-        return artwork;
+        return artwork
       })
-    );
-  };
-
-  
-  const toggleArtworkLike = (artworkId, userId) => {
-    if (!userId) return;
-    
-    setArtworkCollection(prevCollection => 
-      prevCollection.map(artwork => {
-        if (artwork.id === Number(artworkId)) {
-          const userLikedIndex = artwork.likedBy ? artwork.likedBy.indexOf(userId) : -1;
-          
-          if (userLikedIndex === -1) {
-            
+    )
+  }  
+  const toggleLike = (artId,userId)=> {
+    if (!userId) return
+    setArtworks(prevList => 
+      prevList.map(artwork => {
+        if (artwork.id === Number(artId)) {
+          const userIndex = artwork.likedBy ? artwork.likedBy.indexOf(userId) : -1
+          if (userIndex === -1){
             return {
               ...artwork,
               likes: artwork.likes + 1,
               likedBy: [...(artwork.likedBy || []), userId]
-            };
-          } else {
-            
-            const updatedLikedBy = [...artwork.likedBy];
-            updatedLikedBy.splice(userLikedIndex, 1);
-            
+            }
+          } 
+          else{
+            const newLikedBy = [...artwork.likedBy]
+            newLikedBy.splice(userIndex, 1)
             return {
               ...artwork,
               likes: artwork.likes - 1,
-              likedBy: updatedLikedBy
-            };
+              likedBy: newLikedBy
+            }
           }
         }
-        return artwork;
+        return artwork
       })
-    );
-  };
+    )
+  }
 
-  
-  const hasUserLikedArtwork = (artworkId, userId) => {
-    if (!userId) return false;
-    
-    const artwork = findArtworkById(artworkId);
-    return artwork && artwork.likedBy && artwork.likedBy.includes(userId);
-  };
-
-  
-  const searchArtworksByTerm = (searchTerm, categoryFilters = [], styleFilters = []) => {
-    if (!searchTerm && categoryFilters.length === 0 && styleFilters.length === 0) {
-      return artworkCollection;
+  const userLiked = (artId, userId) => {
+    if (!userId) return false
+    const artwork = findArt(artId)
+    return artwork && artwork.likedBy && artwork.likedBy.includes(userId)
+  }
+  const searchArt = (searchText,categories = [],styles = [])=> {
+    if (!searchText && categories.length === 0 && styles.length === 0){
+      return artworks
     }
+    const lowerText = searchText.toLowerCase()
     
-    const normalizedSearchTerm = searchTerm.toLowerCase();
-    
-    return artworkCollection.filter(artwork => {
-      
-      const matchesSearchTerm = !searchTerm || 
-        artwork.title.toLowerCase().includes(normalizedSearchTerm) ||
-        artwork.artist.toLowerCase().includes(normalizedSearchTerm) ||
-        artwork.description.toLowerCase().includes(normalizedSearchTerm);
-      
-      
-      const matchesCategory = categoryFilters.length === 0 || 
-        categoryFilters.includes(artwork.category);
-      
-      
-      const matchesStyle = styleFilters.length === 0 || 
-        styleFilters.includes(artwork.style);
-      
-      return matchesSearchTerm && matchesCategory && matchesStyle;
-    });
-  };
+    return artworks.filter((artwork) => {
+      const matchesText = !searchText || 
+        artwork.title.toLowerCase().includes(lowerText) ||
+        artwork.artist.toLowerCase().includes(lowerText) ||
+        artwork.description.toLowerCase().includes(lowerText)
+      const matchesCategory = categories.length === 0 || 
+        categories.includes(artwork.category)
+      const matchesStyle = styles.length === 0 || 
+        styles.includes(artwork.style)
+      return matchesText && matchesCategory && matchesStyle
+    })
+  }
 
-  
-  const contextValue = {
-    artworks: artworkCollection,
-    addArtwork: createNewArtwork,
-    getArtwork: findArtworkById,
-    trackView: recordArtworkView,
-    toggleLike: toggleArtworkLike,
-    hasUserLiked: hasUserLikedArtwork,
-    searchArtworks: searchArtworksByTerm
-  };
+  const value = {
+    artworks: artworks,
+    addArtwork: addNewArt,
+    getArtwork: findArt,
+    trackView: addView,
+    toggleLike: toggleLike,
+    hasUserLiked: userLiked,
+    searchArtworks: searchArt
+  }
 
   return (
-    <GalleryArtworkContext.Provider value={contextValue}>
+    <ArtContext.Provider value={value}>
       {children}
-    </GalleryArtworkContext.Provider>
-  );
-};
+    </ArtContext.Provider>
+  )
+}
 
-export const getArtworkById = (id) => {
-  const artworkData = {
+export const getArtById = (id)=> {
+  const imageMap = {
     1: artwork1Thumbnail,
     2: artwork2Thumbnail,
     3: artwork3Thumbnail,
@@ -380,7 +337,6 @@ export const getArtworkById = (id) => {
     10: artwork10Thumbnail,
     11: artwork11Thumbnail,
     12: artwork12Thumbnail,
-  };
-  
-  return artworkData[id];
-}; 
+  }
+  return imageMap[id]
+}

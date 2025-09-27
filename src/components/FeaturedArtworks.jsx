@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Visibility } from '@mui/icons-material';
-import { motion, AnimatePresence } from 'framer-motion';
-const artwork1Thumbnail = '/artworks/artwork1.png?v=1';
-const artwork3Thumbnail = '/artworks/artwork3.jpg?v=1';
-const artwork7Thumbnail = '/artworks/artwork7.jpg?v=1';
-const artwork8Thumbnail = '/artworks/artwork8.webp?v=1';
-const artwork9Thumbnail = '/artworks/artwork9.jpg?v=1';
-import './FeaturedArtworks.css';
+import React, {useState,useEffect} from 'react'
+import {ChevronLeft,ChevronRight,Visibility} from '@mui/icons-material'
+import {motion,AnimatePresence} from 'framer-motion'
+const artwork1Thumbnail = '/artworks/artwork1.png?v=1'
+const artwork3Thumbnail = '/artworks/artwork3.jpg?v=1'
+const artwork7Thumbnail = '/artworks/artwork7.jpg?v=1'
+const artwork8Thumbnail = '/artworks/artwork8.webp?v=1'
+const artwork9Thumbnail = '/artworks/artwork9.jpg?v=1'
+import {Link} from 'react-router-dom'
+import './FeaturedArtworks.css'
 
-const featuredArtworks = [
+const artworkList = [
   {
     id: 1,
     title: "Abstract Harmony",
@@ -50,65 +50,69 @@ const featuredArtworks = [
     imageUrl: artwork8Thumbnail,
     views: 1689
   }
-];
+]
 
 function FeaturedArtworks() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const nextSlide = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % featuredArtworks.length);
-      setTimeout(() => setIsAnimating(false), 500);
+  const [activeSlide,setActiveSlide] = useState(0)
+  const [isMoving,setIsMoving] = useState(false)
+  
+  const goToNext = ()=> {
+    if (!isMoving) {
+      setIsMoving(true)
+      setActiveSlide((current)=> (current+1) % artworkList.length)
+      setTimeout(() => setIsMoving(false),500)
     }
   };
-  const prevSlide = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentIndex((prevIndex) => (prevIndex - 1 + featuredArtworks.length) % featuredArtworks.length);
-      setTimeout(() => setIsAnimating(false), 500);
+  
+  const goToPrev = ()=> {
+    if (!isMoving){
+      setIsMoving(true)
+      setActiveSlide((current)=> (current-1 + artworkList.length) % artworkList.length)
+      setTimeout(()=> setIsMoving(false),500)
     }
-  };
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+  }
+  
+  useEffect(()=> {
+    const autoPlay = setInterval(()=> {
+      goToNext()
+    },5000)
+    return ()=> clearInterval(autoPlay)
+  }, [activeSlide])
+  
   return (
-    <div className="featured-artworks">
-      <div className="slider-container">
+    <div className="main">
+      <div className="slider">
         <AnimatePresence mode="wait">
-          {featuredArtworks.map((artwork, index) => (
+          {artworkList.map((artwork,index)=> (
             <motion.div
               key={artwork.id}
-              className={`slide ${index === currentIndex ? 'active' : ''}`}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: index === currentIndex ? 1 : 0, x: index === currentIndex ? 0 : -100 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
+              className={`slide ${index === activeSlide ? 'active' : ''}`}
+              initial={{opacity: 0, x: 100}}
+              animate={{opacity: index === activeSlide ? 1 : 0, x: index === activeSlide ? 0 : -100 }}
+              exit={{opacity: 0, x: -100}}
+              transition={{duration: 0.5}}
             >
               <img
                 src={artwork.imageUrl}
                 alt={artwork.title}
-                className="slide-image"
+                className="image"
               />
-              <div className="slide-overlay"></div>
-              <div className="slide-content">
-                <h3 className="slide-title">{artwork.title}</h3>
+              <div className="overlay"></div>
+              <div className="content">
+                <h3 className="title">{artwork.title}</h3>
                 <Link 
                   to={`/artist/${artwork.artistId}`}
-                  className="artist-link"
+                  className="artist"
                 >
                   By {artwork.artist}
                 </Link>
-                <div className="slide-actions">
-                  <button className="views-button">
-                    <Visibility fontSize="small" /> {artwork.views}
+                <div className="actions">
+                  <button className="views">
+                    <Visibility fontSize="small"/> {artwork.views}
                   </button>
                   <Link
                     to={`/artwork/${artwork.id}`}
-                    className="view-button"
+                    className="btn"
                   >
                     View Artwork
                   </Link>
@@ -119,30 +123,30 @@ function FeaturedArtworks() {
         </AnimatePresence>
       </div>
       <button
-        onClick={prevSlide}
-        className="nav-button prev"
-        disabled={isAnimating}
+        onClick={goToPrev}
+        className="nav prev"
+        disabled={isMoving}
       >
         <ChevronLeft />
       </button>
       <button
-        onClick={nextSlide}
-        className="nav-button next"
-        disabled={isAnimating}
+        onClick={goToNext}
+        className="nav next"
+        disabled={isMoving}
       >
         <ChevronRight />
       </button>
       <div className="dots">
-        {featuredArtworks.map((_, index) => (
+        {artworkList.map((_,index)=> (
           <button
             key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`dot ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => setActiveSlide(index)}
+            className={`dot ${index=== activeSlide ? 'active' : ''}`}
           ></button>
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default FeaturedArtworks;
+export default FeaturedArtworks
