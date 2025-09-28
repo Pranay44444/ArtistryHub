@@ -1,18 +1,18 @@
-.about-page {
+.about-main {
   min-height: 100vh;
   background-color: var(--bg-main);
   padding-top: 70px; 
 }
-.about-intro-section {
+.intro {
   padding: 5rem 0;
   text-align: center;
   background: linear-gradient(to right, rgba(102, 51, 153, 0.05), rgba(0, 128, 128, 0.05));
 }
-.about-intro-content {
+.content {
   max-width: 800px;
   margin: 0 auto;
 }
-.about-title {
+.title {
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -20,53 +20,53 @@
   position: relative;
   display: inline-block;
 }
-.about-title::after {
+.title::after {
   display: none;
 }
-.about-description {
+.text {
   font-size: 1.25rem;
   line-height: 1.8;
   color: var(--text-secondary);
   max-width: 700px;
   margin: 0 auto;
 }
-.about-mission-section {
+.mission {
   padding: 5rem 0;
   background-color: var(--bg-alt);
 }
-.mission-grid {
+.ab-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
   align-items: center;
 }
 @media (min-width: 768px) {
-  .mission-grid {
+  .ab-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
-.mission-content {
+.ab-info {
   max-width: 600px;
 }
-.mission-text {
+.desc {
   font-size: 1.125rem;
   line-height: 1.8;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
 }
-.mission-image-container {
+.imgbox {
   width: 100%;
   height: 100%;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, filter 0.3s ease;
 }
-.mission-image-container:hover {
-  transform: translateY(-5px);
+.imgbox:hover {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.05);
 }
-.mission-image {
+.imgbox .img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -76,7 +76,7 @@
   padding: 5rem 0;
   text-align: center;
 }
-.section-title {
+.heading {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -84,7 +84,7 @@
   position: relative;
   display: inline-block;
 }
-.section-title::after {
+.heading::after {
   display: none;
 }
 .values-grid {
@@ -115,8 +115,8 @@
   align-items: center;
 }
 .value-card:hover {
-  transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.02);
 }
 .value-icon {
   font-size: 2.5rem;
@@ -188,8 +188,8 @@
   transition: all 0.2s ease;
 }
 .btn-primary:hover {
-  transform: translateY(-3px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  filter: brightness(0.95);
 }
 .btn-secondary {
   display: inline-flex;
@@ -206,5 +206,5 @@
 }
 .btn-secondary:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-3px);
+  filter: brightness(1.1);
 } 

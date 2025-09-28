@@ -80,8 +80,8 @@ function FeaturedArtworks() {
   }, [activeSlide])
   
   return (
-    <div className="main">
-      <div className="slider">
+    <div className="slider-main">
+      <div className="slider-box">
         <AnimatePresence mode="wait">
           {artworkList.map((artwork,index)=> (
             <motion.div
@@ -95,17 +95,14 @@ function FeaturedArtworks() {
               <img
                 src={artwork.imageUrl}
                 alt={artwork.title}
-                className="image"
+                className="img"
               />
               <div className="overlay"></div>
-              <div className="content">
-                <h3 className="title">{artwork.title}</h3>
-                <Link 
-                  to={`/artist/${artwork.artistId}`}
-                  className="artist"
-                >
+              <div className="info">
+                <h3 className="name">{artwork.title}</h3>
+                <p className="artist">
                   By {artwork.artist}
-                </Link>
+                </p>
                 <div className="actions">
                   <button className="views">
                     <Visibility fontSize="small"/> {artwork.views}

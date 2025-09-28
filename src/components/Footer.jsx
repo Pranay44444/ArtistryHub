@@ -31,14 +31,14 @@ function Footer(){
             </div>
           </div>
           <div className="section">
-            <h4 className="heading">Explore</h4>
+            <h4 className="footer-heading">Explore</h4>
             <ul className="footer-links">
               <li><Link to="/gallery" className="footer-link">Gallery</Link></li>
               <li><Link to="/upload" className="footer-link">Upload</Link></li>
             </ul>
           </div>
           <div className="section">
-            <h4 className="heading">Community</h4>
+            <h4 className="footer-heading">Community</h4>
             <ul className="footer-links">
               <li><Link to="/about" className="footer-link">About Us</Link></li>
               <li><a href="mailto:chitarepranay85@gmail.com" className="footer-link">Support</a></li>

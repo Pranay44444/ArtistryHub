@@ -1,4 +1,4 @@
-.artwork-detail-page {
+.artwork-detail {
   padding: 100px 0 30px;
   background-color: var(--bg-main);
   color: var(--text-primary);
@@ -13,49 +13,49 @@
 .breadcrumbs {
   margin-bottom: 25px;
 }
-.breadcrumbs-list {
+.blist {
   display: flex;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.breadcrumbs-list li {
+.blist li {
   display: flex;
   align-items: center;
 }
-.breadcrumb-separator {
+.bseparator {
   font-size: 18px;
   color: var(--text-secondary);
   transition: color 0.3s ease;
 }
-.breadcrumb-link {
+.blink {
   color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.3s ease;
 }
-.breadcrumb-link:hover {
+.blink:hover {
   color: var(--primary-color);
 }
-.breadcrumb-current {
+.bcurrent {
   color: var(--text-primary);
   font-weight: 500;
   transition: color 0.3s ease;
 }
-.artwork-detail-grid {
+.artworkgrid {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 40px;
   align-items: start;
 }
-.artwork-main-content {
+.maincontent {
   width: 100%;
   padding-right: 2rem;
 }
-.artwork-image-section {
+.imagesec {
   margin-bottom: 30px;
 }
-.artwork-image-wrapper {
+.wrapper {
   width: 100%;
   height: 0;
   padding-bottom: 75%; 
@@ -67,7 +67,7 @@
   transition: box-shadow 0.3s ease;
   margin-bottom: 2rem;
 }
-.artwork-image {
+.aimage {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,10 +77,10 @@
   background-color: rgba(0,0,0,0.03); 
   transition: transform 0.3s ease;
 }
-.artwork-image-wrapper:hover .artwork-image {
+.wrapper:hover .aimage {
   transform: scale(1.02);
 }
-.fullscreen-modal {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -92,12 +92,12 @@
   justify-content: center;
   align-items: center;
 }
-.fullscreen-image {
+.fullimage {
   max-width: 90%;
   max-height: 90%;
   object-fit: contain;
 }
-.close-fullscreen {
+.close {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -109,7 +109,7 @@
   z-index: 1001;
   transition: color 0.3s ease;
 }
-.purchase-modal {
+.purchasemodal {
   position: fixed;
   top: 0;
   left: 0;
@@ -121,7 +121,7 @@
   justify-content: center;
   align-items: center;
 }
-.purchase-modal-content {
+.modalcontent {
   background-color: var(--bg-main);
   color: var(--text-primary);
   border-radius: 12px;
@@ -132,7 +132,7 @@
   position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-.close-modal {
+.closem {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -146,54 +146,54 @@
   padding: 5px;
   transition: color 0.3s ease;
 }
-.close-modal:hover {
+.closem:hover {
   color: var(--text-primary);
 }
-.modal-title {
+.mtitle {
   font-size: 24px;
   margin-bottom: 25px;
   text-align: center;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
-.purchase-details {
+.pdetails {
   display: flex;
   margin-bottom: 30px;
   gap: 20px;
 }
-.purchase-thumbnail {
+.pthumbnail {
   width: 120px;
   height: 120px;
   object-fit: cover;
   border-radius: 8px;
 }
-.purchase-info {
+.pinfo {
   flex: 1;
 }
-.purchase-info h3 {
+.pinfo h3 {
   margin: 0 0 8px;
   font-size: 20px;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
-.purchase-info p {
+.pinfo p {
   margin: 0 0 5px;
   color: var(--text-secondary);
   transition: color 0.3s ease;
 }
-.purchase-price {
+.pprice {
   font-size: 22px;
   font-weight: 600;
   color: var(--text-primary) !important;
   margin-top: 15px !important;
   transition: color 0.3s ease;
 }
-.purchase-actions {
+.pactions {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.purchase-button {
+.pbutton {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -203,10 +203,10 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.purchase-button:hover {
+.pbutton:hover {
   background-color: var(--primary-dark);
 }
-.cancel-button {
+.cancelb {
   background-color: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border-color);
@@ -216,10 +216,10 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.cancel-button:hover {
+.cancelb:hover {
   background-color: var(--bg-alt);
 }
-.artist-simple-card {
+.ascard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -236,7 +236,7 @@
   text-align: center;
   transition: color 0.3s ease;
 }
-.artwork-info-card {
+.ainfocard {
   background-color: var(--bg-card);
   border-radius: 12px;
   padding: 24px;
@@ -244,53 +244,53 @@
   box-shadow: var(--card-shadow);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-.artwork-sidebar {
+.asidebar {
   position: sticky;
   top: 100px;
   width: 100%;
   transition: top 0.3s ease;
 }
-.artwork-sidebar .artwork-info-card {
+.asidebar .ainfocard {
   margin-bottom: 20px;
 }
-.artwork-title {
+.atitle {
   font-size: 24px;
   font-weight: 700;
   margin: 0 0 16px;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
-.artwork-description {
+.adescription {
   font-size: 15px;
   line-height: 1.6;
   margin-bottom: 24px;
   color: var(--text-secondary);
   transition: color 0.3s ease;
 }
-.artwork-metadata {
+.ametadata {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 12px; 
 }
-.metadata-item {
+.metaitem {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-.metadata-label {
+.metalabel {
   font-weight: 500;
   font-size: 14px;
   color: var(--text-secondary);
   min-width: 70px;
   transition: color 0.3s ease;
 }
-.metadata-value {
+.metavalue {
   font-size: 14px;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
-.buy-section {
+.buys {
   background-color: var(--bg-card);
   border-radius: 12px;
   padding: 24px;
@@ -298,10 +298,10 @@
   margin-bottom: 24px;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-.price-container {
+.pricec {
   text-align: center;
 }
-.price-label {
+.pricelabel {
   display: block;
   font-size: 14px;
   color: var(--text-secondary);
@@ -321,7 +321,7 @@
   display: flex;
   justify-content: center;
 }
-.buy-now-button {
+.buy-button {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -333,10 +333,10 @@
   transition: background-color 0.3s ease;
   width: 100%;
 }
-.buy-now-button:hover {
+.buy-button:hover {
   background-color: var(--primary-dark);
 }
-.loading-container {
+.lcontainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -344,7 +344,7 @@
   background-color: var(--bg-main);
   transition: background-color 0.3s ease;
 }
-.loading-spinner {
+.spinner {
   width: 50px;
   height: 50px;
   border: 5px solid var(--bg-alt);
@@ -357,7 +357,7 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-.not-found-container {
+.notcontainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -365,7 +365,7 @@
   background-color: var(--bg-main);
   transition: background-color 0.3s ease;
 }
-.not-found-content {
+.notcontent {
   text-align: center;
   padding: 40px;
   max-width: 600px;
@@ -374,20 +374,20 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-.not-found-title {
+.nottitle {
   font-size: 28px;
   margin-bottom: 15px;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
-.not-found-message {
+.notmessage {
   color: var(--text-secondary);
   margin-bottom: 25px;
   font-size: 16px;
   line-height: 1.5;
   transition: color 0.3s ease;
 }
-.not-found-link {
+.notlink {
   display: inline-block;
   background-color: var(--primary-color);
   color: white;
@@ -397,7 +397,7 @@
   font-weight: 600;
   transition: background-color 0.3s ease;
 }
-.not-found-link:hover {
+.notlink:hover {
   background-color: var(--primary-dark);
 }
 .comments-content {
@@ -543,7 +543,7 @@
 .similar-artwork:hover {
   transform: translateY(-5px);
 }
-.similar-artwork-image {
+.similar-aimage {
   width: 100%;
   height: 0;
   padding-bottom: 75%;
@@ -564,7 +564,7 @@
 .similar-artwork:hover .artwork-thumbnail {
   transform: scale(1.05);
 }
-.similar-artwork-title {
+.similar-atitle {
   font-size: 16px;
   margin: 0 0 5px;
   color: var(--text-primary);
@@ -583,29 +583,29 @@
   text-overflow: ellipsis;
 }
 @media (max-width: 992px) {
-  .artwork-detail-grid {
+  .artworkgrid {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  .artwork-sidebar {
+  .asidebar {
     position: static;
     margin-top: 20px;
   }
-  .artwork-main-content {
+  .maincontent {
     padding-right: 0;
   }
-  .artwork-image-wrapper {
+  .wrapper {
     padding-bottom: 70%;
   }
 }
 @media (max-width: 768px) {
-  .artwork-detail-page {
+  .artwork-detail {
     padding-top: 80px;
   }
   .container {
     padding: 0 15px;
   }
-  .purchase-details {
+  .pdetails {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -613,10 +613,10 @@
   .breadcrumbs {
     margin-bottom: 20px;
   }
-  .artist-simple-card {
+  .ascard {
     margin-bottom: 16px;
   }
-  .artwork-title {
+  .atitle {
     font-size: 22px;
   }
   .similar-artworks-grid {
@@ -625,30 +625,30 @@
   }
 }
 @media (max-width: 480px) {
-  .artwork-detail-page {
+  .artwork-detail {
     padding-top: 70px;
   }
-  .artwork-image-wrapper {
+  .wrapper {
     padding-bottom: 80%;
   }
   .similar-artworks-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .breadcrumbs-list {
+  .blist {
     font-size: 13px;
   }
-  .purchase-modal-content {
+  .modalcontent {
     padding: 20px;
   }
-  .modal-title {
+  .mtitle {
     font-size: 20px;
   }
-  .purchase-thumbnail {
+  .pthumbnail {
     width: 100px;
     height: 100px;
   }
-  .buy-now-button {
+  .buy-button {
     padding: 10px 20px;
   }
 }
@@ -701,7 +701,7 @@
 .comment,
 .content-title,
 .description-text,
-.artwork-description {
+.adescription {
   display: none;
 }
 @keyframes viewCountPulse {
@@ -718,7 +718,7 @@
     color: var(--text-primary, #333333);
   }
 }
-.view-count-updated {
+.countupdated {
   animation: viewCountPulse 1.5s ease-in-out;
   font-weight: bold;
 }

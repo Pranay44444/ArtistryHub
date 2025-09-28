@@ -1,35 +1,35 @@
-.gallery-page {
+.g-main {
   padding: 7rem 0 2rem;
   min-height: 90vh;
   background-color: var(--bg-main);
   transition: background-color 0.3s ease;
 }
-.gallery-page .gallery-container {
+.g-main .g-box {
   max-width: 1400px !important;
   width: 95% !important;
   margin: 0 auto !important;
   padding: 0 !important;
   box-sizing: border-box !important;
 }
-.gallery-header {
+.g-head {
   text-align: center;
   margin-bottom: 2rem;
 }
-.gallery-title {
+.g-title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #000000;
   transition: color 0.3s ease;
 }
-.gallery-description {
+.g-desc {
   font-size: 1rem;
   color: var(--text-secondary);
   max-width: 700px;
   margin: 0 auto;
   transition: color 0.3s ease;
 }
-.gallery-page .search-filter-bar {
+.g-main .g-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,15 +40,15 @@
 .search-filter-container {
   display: none;
 }
-.gallery-page .search-form {
+.g-main .g-form {
   flex: 1;
   min-width: 250px;
 }
-.gallery-page .search-input-wrapper {
+.g-main .g-wrap {
   position: relative;
   width: 100%;
 }
-.gallery-page .search-input {
+.g-main .g-input {
   width: 100%;
   padding: 0.75rem 3rem 0.75rem 2.5rem;
   border-radius: 0.5rem;
@@ -58,22 +58,22 @@
   font-size: 1rem;
   transition: all 0.3s ease;
 }
-.search-input:focus {
+.g-input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px rgba(126, 87, 194, 0.1);
 }
-.search-input::placeholder {
+.g-input::placeholder {
   color: var(--text-muted);
 }
-.search-icon {
+.g-icon {
   position: absolute;
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
 }
-.clear-search {
+.g-clear {
   position: absolute;
   right: 1rem;
   top: 50%;
@@ -86,7 +86,7 @@
   align-items: center;
   justify-content: center;
 }
-.clear-search:hover {
+.g-clear:hover {
   color: var(--error);
 }
 .filter-buttons {
@@ -279,21 +279,21 @@
   text-decoration: underline;
 }
 @media (max-width: 640px) {
-  .gallery-container {
+  .g-box {
     padding: 0 1rem;
   }
-  .gallery-title {
+  .g-title {
     font-size: 2rem;
   }
-  .gallery-page .search-filter-bar {
+  .g-main .g-bar {
     flex-direction: column;
     align-items: stretch;
   }
-  .gallery-page .search-input {
+  .g-main .g-input {
     padding: 0.75rem 2.5rem 0.75rem 2.2rem;
     font-size: 0.9rem;
   }
-  .search-icon {
+  .g-icon {
     left: 0.75rem;
   }
   .filter-dropdown {

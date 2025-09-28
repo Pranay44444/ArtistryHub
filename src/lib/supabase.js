@@ -1,41 +1,41 @@
 import { createClient } from '@supabase/supabase-js';
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder-supabase-url.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key';
-const isUsingPlaceholder = supabaseUrl === 'https://placeholder-supabase-url.supabase.co';
-if (isUsingPlaceholder) {
+const dbUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder-supabase-url.supabase.co';
+const dbKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key';
+const isDemo = dbUrl === 'https://placeholder-supabase-url.supabase.co';
+if (isDemo) {
   console.warn('⚠️ Using placeholder Supabase credentials. Mock data will be used for demo purposes.');
 }
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-const mockProfiles = [
+export const supabase = createClient(dbUrl, dbKey);
+const demoUsers = [
   { id: '1', username: 'artist1', full_name: 'Artist One', email: 'artist1@example.com', avatar_url: 'https://randomuser.me/api/portraits/men/1.jpg' },
   { id: '2', username: 'artist2', full_name: 'Artist Two', email: 'artist2@example.com', avatar_url: 'https://randomuser.me/api/portraits/women/2.jpg' },
 ];
-const mockArtworks = [
+const demoArt = [
   { id: '1', title: 'Abstract Harmony', description: 'An exploration of color and form.', user_id: '1', image_url: 'https://picsum.photos/800/600?random=1', created_at: '2023-05-15', likes_count: 24, views_count: 102, category: 'Digital Art', style: 'Abstract' },
   { id: '2', title: 'Urban Landscape', description: 'A digital representation of modern city life.', user_id: '2', image_url: 'https://picsum.photos/800/600?random=2', created_at: '2023-05-10', likes_count: 18, views_count: 89, category: 'Photography', style: 'Urban' },
 ];
 export const signUp = async ({ email, password, username, fullName }) => {
-  if (isUsingPlaceholder) {
+  if (isDemo) {
     return { user: { id: Math.random().toString(), email, username } };
   }
   try {
-    const { data: authData, error: authError } = await supabase.auth.signUp({
+    const { data: user, error: userError } = await supabase.auth.signUp({
       email,
       password,
     });
-    if (authError) throw authError;
+    if (userError) throw userError;
     const { error: profileError } = await supabase
       .from('profiles')
       .insert([
         {
-          id: authData.user.id,
+          id: user.user.id,
           username,
           full_name: fullName,
           email,
         },
       ]);
     if (profileError) throw profileError;
-    return authData;
+    return user;
   } catch (error) {
     console.error('Sign up error:', error.message);
     throw error;
@@ -71,37 +71,37 @@ export const updateProfile = async (userId, updates) => {
   return data;
 };
 export const getArtworks = async ({ category, style, sortBy, page = 1, limit = 12 }) => {
-  if (isUsingPlaceholder) {
-    let filteredArtworks = [...mockArtworks];
+  if (isDemo) {
+    let filtered = [...demoArt];
     if (category) {
-      filteredArtworks = filteredArtworks.filter(art => art.category === category);
+      filtered = filtered.filter(art => art.category === category);
     }
     if (style) {
-      filteredArtworks = filteredArtworks.filter(art => art.style === style);
+      filtered = filtered.filter(art => art.style === style);
     }
     switch (sortBy) {
       case 'recent':
-        filteredArtworks.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         break;
       case 'popular':
-        filteredArtworks.sort((a, b) => b.likes_count - a.likes_count);
+        filtered.sort((a, b) => b.likes_count - a.likes_count);
         break;
       case 'trending':
-        filteredArtworks.sort((a, b) => b.views_count - a.views_count);
+        filtered.sort((a, b) => b.views_count - a.views_count);
         break;
       default:
-        filteredArtworks.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     }
-    const artworksWithProfiles = filteredArtworks.map(artwork => {
-      const profile = mockProfiles.find(p => p.id === artwork.user_id);
+    const artWithUsers = filtered.map(artwork => {
+      const profile = demoUsers.find(p => p.id === artwork.user_id);
       return {
         ...artwork,
         profiles: profile
       };
     });
     return { 
-      data: artworksWithProfiles,
-      count: filteredArtworks.length
+      data: artWithUsers,
+      count: filtered.length
     };
   }
   try {
@@ -144,12 +144,12 @@ export const getArtworks = async ({ category, style, sortBy, page = 1, limit = 1
   }
 };
 export const getArtwork = async (artworkId) => {
-  if (isUsingPlaceholder) {
-    const artwork = mockArtworks.find(a => a.id === artworkId);
+  if (isDemo) {
+    const artwork = demoArt.find(a => a.id === artworkId);
     if (!artwork) {
       return null;
     }
-    const profile = mockProfiles.find(p => p.id === artwork.user_id);
+    const profile = demoUsers.find(p => p.id === artwork.user_id);
     return {
       ...artwork,
       profiles: profile,
@@ -335,16 +335,16 @@ export const createTag = async (tag) => {
   return data;
 };
 export const uploadImage = async (file, path) => {
-  const fileExt = file.name.split('.').pop();
-  const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
-  const filePath = `${path}/${fileName}`;
+  const ext = file.name.split('.').pop();
+  const name = `${Math.random().toString(36).substring(2)}.${ext}`;
+  const fullPath = `${path}/${name}`;
   const { error: uploadError } = await supabase.storage
     .from('artworks')
-    .upload(filePath, file);
+    .upload(fullPath, file);
   if (uploadError) throw uploadError;
   const { data: { publicUrl } } = supabase.storage
     .from('artworks')
-    .getPublicUrl(filePath);
+    .getPublicUrl(fullPath);
   return publicUrl;
 };
 export const deleteImage = async (path) => {

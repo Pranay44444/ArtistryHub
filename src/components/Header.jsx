@@ -133,7 +133,7 @@ function Header() {
         {showSearch && (
           <div className="search">
             <form onSubmit={handleSearch}>
-              <div className="search-input-container">
+              <div className="searchcontainer">
                 <input
                   ref={searchInputRef}
                   type="text"

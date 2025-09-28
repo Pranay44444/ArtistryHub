@@ -1,14 +1,13 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { ClerkProvider } from '@clerk/clerk-react';
-import { BrowserRouter } from 'react-router-dom';
-import ArtistryHubApp from './App';
-import './index.css';
+import React from 'react'
+import {createRoot} from 'react-dom/client'
+import {ClerkProvider} from '@clerk/clerk-react'
+import {BrowserRouter} from 'react-router-dom'
+import ArtistryHubApp from './App'
+import './index.css'
 
-const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || "pk_test_Zmx1ZW50LWJsdWVqYXktOS5jbGVyay5hY2NvdW50cy5kZXYk";
-
-if (!publishableKey) {
-  throw new Error("Missing Clerk Publishable Key");
+const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || "pk_test_Zmx1ZW50LWJsdWVqYXktOS5jbGVyay5hY2NvdW50cy5kZXYk"
+if (!publishableKey){
+  throw new Error("Missing Clerk Publishable Key")
 }
 
 const clerkAppearanceConfig = {
@@ -43,17 +42,16 @@ const clerkAppearanceConfig = {
       borderRadius: '6px',
     }
   },
-};
+}
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ClerkProvider 
       publishableKey={publishableKey}
-      appearance={clerkAppearanceConfig}
-    >
+      appearance={clerkAppearanceConfig}>
       <BrowserRouter>
         <ArtistryHubApp />
       </BrowserRouter>
     </ClerkProvider>
   </React.StrictMode>
-);
+)
