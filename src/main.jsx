@@ -2,7 +2,7 @@ import React from 'react'
 import {createRoot} from 'react-dom/client'
 import {ClerkProvider} from '@clerk/clerk-react'
 import {BrowserRouter} from 'react-router-dom'
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import ArtistryHubApp from './App'
 import './index.css'
 
