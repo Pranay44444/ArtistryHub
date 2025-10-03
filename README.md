@@ -12,6 +12,7 @@ ArtistryHub is where creators showcase their work and art lovers discover extrao
 - **Share** your creative vision through our intuitive upload system
 - **Connect** with like-minded artists and build your audience
 - **Explore** different styles, techniques, and artistic perspectives
+- **SignIn/SignUp** with clerk authentication
 
 ## 💻 Tech Stack
 
