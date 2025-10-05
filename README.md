@@ -16,7 +16,7 @@ ArtistryHub is where creators showcase their work and art lovers discover extrao
 
 ## 💻 Tech Stack
 
-Built with React, styled with modern CSS, and powered by Vite for lightning-fast performance.
+Built with React, Clerk for user authentication, styled with modern CSS, and powered by Vite for lightning-fast performance.
 
 ## 🏁 Quick Start
 
